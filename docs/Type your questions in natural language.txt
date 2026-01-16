@@ -1,0 +1,27 @@
+
+### Available Commands
+| Command | Example | Description |
+|---------|---------|-------------|
+| `/file` | `/file gstr1 april` | File GST return |
+| `/invoice` | `/invoice customer:"ABC" amount:10000` | Create invoice |
+| `/reconcile` | `/reconcile march` | Reconcile transactions |
+| `/predict` | `/predict tax next-month` | Predict tax liability |
+| `/alert` | `/alert deadlines` | Show upcoming deadlines |
+
+### Document Processing
+1. **Upload Documents**
+   - Drag & drop invoice files
+   - AI extracts data automatically
+   - Auto-populates forms
+   - Stores in organized folders
+
+2. **Supported Formats**
+   - PDF invoices (scanned/electronic)
+   - JPEG/PNG images
+   - Excel/CSV files
+   - Email attachments
+
+## 📈 Reports & Analytics
+
+### Financial Reports
+1. **Tax Summary Report**

@@ -1,0 +1,24 @@
+{
+  "customer": {
+    "name": "ABC Enterprises",
+    "gstin": "27XYZPU9603R1ZY",
+    "address": "123 Business Street, Mumbai",
+    "email": "accounts@abcenterprises.com",
+    "phone": "+919876543210"
+  },
+  "items": [
+    {
+      "description": "Web Development Services",
+      "quantity": 1,
+      "unit_price": 50000,
+      "tax_rate": 18,
+      "hsn_code": "998314",
+      "discount": 0
+    }
+  ],
+  "payment_terms": "Net 30",
+  "due_date": "2024-05-15",
+  "generate_irn": true,
+  "send_email": true,
+  "template": "modern"
+}

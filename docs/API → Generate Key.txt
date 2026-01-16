@@ -1,0 +1,16 @@
+- Read-only key
+- Read-write key
+- Set expiry date
+- IP whitelisting
+
+2. **Webhook Setup**
+- Configure endpoint URL
+- Select events to trigger
+- Test webhook delivery
+- View webhook logs
+
+## 🔧 Troubleshooting
+
+### Common Issues & Solutions
+
+1. **Login Issues**

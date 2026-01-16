@@ -1,0 +1,563 @@
+{
+  "users": [
+    {
+      "name": "Demo Business Owner",
+      "email": "demo@business.com",
+      "businessName": "Demo Trading Company",
+      "gstNumber": "27AABCD1234A1Z5",
+      "address": {
+        "street": "123 Business Street",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "pincode": "400001",
+        "country": "India"
+      }
+    }
+  ],
+  "customers": [
+    {
+      "name": "Tech Solutions Pvt Ltd",
+      "email": "accounts@techsolutions.com",
+      "phone": "+91 9876543210",
+      "address": "456 Tech Park, Bangalore",
+      "gstNumber": "29AAACT4172L1Z1"
+    },
+    {
+      "name": "Retail Mart",
+      "email": "billing@retailmart.com",
+      "phone": "+91 8765432109",
+      "address": "789 Market Street, Delhi",
+      "gstNumber": "07AAACR5050L1Z3"
+    },
+    {
+      "name": "Office Supplies Co.",
+      "email": "sales@officesupplies.co",
+      "phone": "+91 7654321098",
+      "address": "101 Stationery Road, Chennai",
+      "gstNumber": "33AAACP1234C1Z9"
+    },
+    {
+      "name": "Individual Customer",
+      "email": "customer@email.com",
+      "phone": "+91 9998887776",
+      "address": "Personal Address, Hyderabad"
+    }
+  ],
+  "products": [
+    {
+      "name": "Laptop Computer",
+      "description": "High-performance laptop with 16GB RAM",
+      "category": "electronics",
+      "price": 65000,
+      "gstRate": 18,
+      "unit": "piece"
+    },
+    {
+      "name": "Office Chair",
+      "description": "Ergonomic office chair with adjustable height",
+      "category": "furniture",
+      "price": 12000,
+      "gstRate": 18,
+      "unit": "piece"
+    },
+    {
+      "name": "Printing Paper",
+      "description": "A4 size printing paper, 500 sheets",
+      "category": "stationery",
+      "price": 350,
+      "gstRate": 12,
+      "unit": "ream"
+    },
+    {
+      "name": "Web Development Services",
+      "description": "Professional website development",
+      "category": "services",
+      "price": 50000,
+      "gstRate": 18,
+      "unit": "project"
+    },
+    {
+      "name": "Books",
+      "description": "Educational and reference books",
+      "category": "books",
+      "price": 1200,
+      "gstRate": 0,
+      "unit": "set"
+    },
+    {
+      "name": "Mobile Phone",
+      "description": "Smartphone with latest features",
+      "category": "electronics",
+      "price": 25000,
+      "gstRate": 18,
+      "unit": "piece"
+    }
+  ],
+  "invoices": [
+    {
+      "invoiceNumber": "INV-2023-001",
+      "date": "2023-10-01",
+      "dueDate": "2023-10-15",
+      "customer": {
+        "name": "Tech Solutions Pvt Ltd",
+        "email": "accounts@techsolutions.com",
+        "phone": "+91 9876543210",
+        "address": "456 Tech Park, Bangalore",
+        "gstNumber": "29AAACT4172L1Z1"
+      },
+      "items": [
+        {
+          "description": "Laptop Computer",
+          "quantity": 5,
+          "unitPrice": 65000,
+          "amount": 325000,
+          "gstRate": 18,
+          "gstAmount": 58500,
+          "totalAmount": 383500
+        },
+        {
+          "description": "Web Development Services",
+          "quantity": 1,
+          "unitPrice": 50000,
+          "amount": 50000,
+          "gstRate": 18,
+          "gstAmount": 9000,
+          "totalAmount": 59000
+        }
+      ],
+      "subtotal": 375000,
+      "gstDetails": {
+        "cgst": 33750,
+        "sgst": 33750,
+        "igst": 0,
+        "totalGst": 67500
+      },
+      "totalAmount": 442500,
+      "status": "paid",
+      "paymentDate": "2023-10-10",
+      "paymentMethod": "bank_transfer",
+      "notes": "Payment received on time"
+    },
+    {
+      "invoiceNumber": "INV-2023-002",
+      "date": "2023-10-05",
+      "dueDate": "2023-10-20",
+      "customer": {
+        "name": "Retail Mart",
+        "email": "billing@retailmart.com",
+        "phone": "+91 8765432109",
+        "address": "789 Market Street, Delhi",
+        "gstNumber": "07AAACR5050L1Z3"
+      },
+      "items": [
+        {
+          "description": "Office Chair",
+          "quantity": 10,
+          "unitPrice": 12000,
+          "amount": 120000,
+          "gstRate": 18,
+          "gstAmount": 21600,
+          "totalAmount": 141600
+        },
+        {
+          "description": "Printing Paper",
+          "quantity": 20,
+          "unitPrice": 350,
+          "amount": 7000,
+          "gstRate": 12,
+          "gstAmount": 840,
+          "totalAmount": 7840
+        }
+      ],
+      "subtotal": 127000,
+      "gstDetails": {
+        "cgst": 11220,
+        "sgst": 11220,
+        "igst": 0,
+        "totalGst": 22440
+      },
+      "totalAmount": 149440,
+      "status": "sent",
+      "notes": "Pending payment"
+    },
+    {
+      "invoiceNumber": "INV-2023-003",
+      "date": "2023-10-10",
+      "dueDate": "2023-10-25",
+      "customer": {
+        "name": "Office Supplies Co.",
+        "email": "sales@officesupplies.co",
+        "phone": "+91 7654321098",
+        "address": "101 Stationery Road, Chennai",
+        "gstNumber": "33AAACP1234C1Z9"
+      },
+      "items": [
+        {
+          "description": "Books",
+          "quantity": 50,
+          "unitPrice": 1200,
+          "amount": 60000,
+          "gstRate": 0,
+          "gstAmount": 0,
+          "totalAmount": 60000
+        },
+        {
+          "description": "Mobile Phone",
+          "quantity": 8,
+          "unitPrice": 25000,
+          "amount": 200000,
+          "gstRate": 18,
+          "gstAmount": 36000,
+          "totalAmount": 236000
+        }
+      ],
+      "subtotal": 260000,
+      "gstDetails": {
+        "cgst": 18000,
+        "sgst": 18000,
+        "igst": 0,
+        "totalGst": 36000
+      },
+      "totalAmount": 296000,
+      "status": "draft",
+      "notes": "Invoice in preparation"
+    }
+  ],
+  "expenses": [
+    {
+      "category": "office",
+      "description": "Monthly rent for office space",
+      "amount": 50000,
+      "date": "2023-10-01",
+      "vendor": "Property Management Ltd",
+      "paymentMethod": "bank_transfer",
+      "invoiceNumber": "RENT-2023-10",
+      "gstApplicable": true,
+      "gstAmount": 9000,
+      "totalAmount": 59000,
+      "notes": "October office rent"
+    },
+    {
+      "category": "utilities",
+      "description": "Electricity bill for September",
+      "amount": 15000,
+      "date": "2023-10-05",
+      "vendor": "State Electricity Board",
+      "paymentMethod": "online",
+      "invoiceNumber": "EB-202309",
+      "gstApplicable": true,
+      "gstAmount": 2700,
+      "totalAmount": 17700,
+      "notes": "Monthly electricity bill"
+    },
+    {
+      "category": "travel",
+      "description": "Business travel to client meeting",
+      "amount": 8000,
+      "date": "2023-10-08",
+      "vendor": "Multiple vendors",
+      "paymentMethod": "credit_card",
+      "gstApplicable": true,
+      "gstAmount": 1440,
+      "totalAmount": 9440,
+      "notes": "Travel expenses for client visit"
+    },
+    {
+      "category": "marketing",
+      "description": "Online advertising campaign",
+      "amount": 25000,
+      "date": "2023-10-12",
+      "vendor": "Digital Marketing Agency",
+      "paymentMethod": "bank_transfer",
+      "invoiceNumber": "AD-2023-10",
+      "gstApplicable": true,
+      "gstAmount": 4500,
+      "totalAmount": 29500,
+      "notes": "Monthly marketing expenses"
+    },
+    {
+      "category": "salaries",
+      "description": "Employee salaries for September",
+      "amount": 250000,
+      "date": "2023-10-01",
+      "vendor": "Employees",
+      "paymentMethod": "bank_transfer",
+      "gstApplicable": false,
+      "gstAmount": 0,
+      "totalAmount": 250000,
+      "notes": "Monthly salary payment"
+    }
+  ],
+  "gstTransactions": [
+    {
+      "type": "sale",
+      "invoiceNumber": "INV-2023-001",
+      "partyName": "Tech Solutions Pvt Ltd",
+      "gstNumber": "29AAACT4172L1Z1",
+      "amount": 375000,
+      "gstRate": 18,
+      "cgst": 33750,
+      "sgst": 33750,
+      "igst": 0,
+      "totalGst": 67500,
+      "totalAmount": 442500,
+      "date": "2023-10-01",
+      "paymentStatus": "paid",
+      "notes": "Intra-state sale"
+    },
+    {
+      "type": "sale",
+      "invoiceNumber": "INV-2023-002",
+      "partyName": "Retail Mart",
+      "gstNumber": "07AAACR5050L1Z3",
+      "amount": 127000,
+      "gstRate": "mixed",
+      "cgst": 11220,
+      "sgst": 11220,
+      "igst": 0,
+      "totalGst": 22440,
+      "totalAmount": 149440,
+      "date": "2023-10-05",
+      "paymentStatus": "pending",
+      "notes": "Mixed GST rates"
+    },
+    {
+      "type": "purchase",
+      "invoiceNumber": "PUR-2023-001",
+      "partyName": "Office Equipment Supplier",
+      "gstNumber": "27AABCD1234A1Z5",
+      "amount": 100000,
+      "gstRate": 18,
+      "cgst": 9000,
+      "sgst": 9000,
+      "igst": 0,
+      "totalGst": 18000,
+      "totalAmount": 118000,
+      "date": "2023-10-03",
+      "paymentStatus": "paid",
+      "notes": "Office equipment purchase"
+    },
+    {
+      "type": "purchase",
+      "invoiceNumber": "PUR-2023-002",
+      "partyName": "Software Solutions Inc",
+      "gstNumber": "09AABCS1234M1Z2",
+      "amount": 50000,
+      "gstRate": 18,
+      "cgst": 4500,
+      "sgst": 4500,
+      "igst": 0,
+      "totalGst": 9000,
+      "totalAmount": 59000,
+      "date": "2023-10-07",
+      "paymentStatus": "paid",
+      "notes": "Software license purchase"
+    },
+    {
+      "type": "expense",
+      "invoiceNumber": "EXP-2023-001",
+      "partyName": "Property Management Ltd",
+      "gstNumber": "27AABCP1234E1Z3",
+      "amount": 50000,
+      "gstRate": 18,
+      "cgst": 4500,
+      "sgst": 4500,
+      "igst": 0,
+      "totalGst": 9000,
+      "totalAmount": 59000,
+      "date": "2023-10-01",
+      "paymentStatus": "paid",
+      "notes": "Office rent with GST"
+    }
+  ],
+  "reports": {
+    "monthlySummary": {
+      "month": "October 2023",
+      "totalSales": 762000,
+      "totalExpenses": 395640,
+      "gstCollected": 125940,
+      "gstPaid": 36900,
+      "netGSTLiability": 89040,
+      "profit": 366360
+    },
+    "topCustomers": [
+      {
+        "name": "Tech Solutions Pvt Ltd",
+        "totalPurchases": 442500,
+        "invoiceCount": 1
+      },
+      {
+        "name": "Office Supplies Co.",
+        "totalPurchases": 296000,
+        "invoiceCount": 1
+      },
+      {
+        "name": "Retail Mart",
+        "totalPurchases": 149440,
+        "invoiceCount": 1
+      }
+    ],
+    "categoryWiseSales": [
+      {
+        "category": "electronics",
+        "amount": 619500,
+        "percentage": 81.3
+      },
+      {
+        "category": "services",
+        "amount": 59000,
+        "percentage": 7.7
+      },
+      {
+        "category": "furniture",
+        "amount": 141600,
+        "percentage": 18.6
+      },
+      {
+        "category": "stationery",
+        "amount": 7840,
+        "percentage": 1.0
+      },
+      {
+        "category": "books",
+        "amount": 60000,
+        "percentage": 7.9
+      }
+    ],
+    "expenseBreakdown": [
+      {
+        "category": "salaries",
+        "amount": 250000,
+        "percentage": 63.2
+      },
+      {
+        "category": "office",
+        "amount": 59000,
+        "percentage": 14.9
+      },
+      {
+        "category": "utilities",
+        "amount": 17700,
+        "percentage": 4.5
+      },
+      {
+        "category": "marketing",
+        "amount": 29500,
+        "percentage": 7.5
+      },
+      {
+        "category": "travel",
+        "amount": 9440,
+        "percentage": 2.4
+      },
+      {
+        "category": "other",
+        "amount": 30000,
+        "percentage": 7.6
+      }
+    ]
+  },
+  "voiceCommandsLog": [
+    {
+      "command": "create_invoice",
+      "transcript": "Create a new invoice for laptop",
+      "language": "en",
+      "success": true,
+      "response": "Opening invoice creation form",
+      "timestamp": "2023-10-15T10:30:00Z"
+    },
+    {
+      "command": "calculate_gst",
+      "transcript": "Calculate GST for 10000 rupees",
+      "language": "en",
+      "success": true,
+      "response": "GST amount: ₹1800, Total: ₹11800",
+      "timestamp": "2023-10-15T11:15:00Z"
+    },
+    {
+      "command": "view_reports",
+      "transcript": "Show monthly reports",
+      "language": "en",
+      "success": true,
+      "response": "Displaying monthly financial reports",
+      "timestamp": "2023-10-15T14:45:00Z"
+    },
+    {
+      "command": "add_expense",
+      "transcript": "Add travel expense",
+      "language": "hi",
+      "success": true,
+      "response": "Opening expense entry form",
+      "timestamp": "2023-10-16T09:20:00Z"
+    },
+    {
+      "command": "search_invoice",
+      "transcript": "Find invoice INV-2023-001",
+      "language": "en",
+      "success": true,
+      "response": "Invoice found: Tech Solutions Pvt Ltd - ₹442,500",
+      "timestamp": "2023-10-16T15:30:00Z"
+    }
+  ],
+  "settings": {
+    "business": {
+      "name": "Demo Trading Company",
+      "type": "Proprietorship",
+      "industry": "Trading & Services",
+      "yearEstablished": 2020,
+      "employeeCount": 10
+    },
+    "gst": {
+      "registrationType": "Regular",
+      "filingFrequency": "Monthly",
+      "lastFiled": "2023-09-30",
+      "nextDueDate": "2023-10-20"
+    },
+    "invoice": {
+      "prefix": "INV",
+      "startingNumber": 1001,
+      "paymentTerms": "Net 15",
+      "defaultNotes": "Thank you for your business!",
+      "taxInclusive": true
+    },
+    "voice": {
+      "enabled": true,
+      "wakeWord": "Hello Accounting",
+      "responseSpeed": "normal",
+      "confirmationTone": true
+    },
+    "notifications": {
+      "email": true,
+      "sms": false,
+      "push": true,
+      "invoiceReminders": true,
+      "paymentAlerts": true
+    }
+  },
+  "quickStats": {
+    "today": {
+      "invoices": 2,
+      "amount": 125000,
+      "expenses": 15000,
+      "profit": 110000
+    },
+    "thisWeek": {
+      "invoices": 8,
+      "amount": 850000,
+      "expenses": 250000,
+      "profit": 600000
+    },
+    "thisMonth": {
+      "invoices": 15,
+      "amount": 1850000,
+      "expenses": 750000,
+      "profit": 1100000
+    },
+    "outstanding": {
+      "invoices": 3,
+      "amount": 245000,
+      "overdue": 1,
+      "overdueAmount": 75000
+    }
+  }
+}

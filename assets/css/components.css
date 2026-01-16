@@ -1,0 +1,20 @@
+/* Additional component styles */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    animation: slideInRight 0.3s ease;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    /* ... */
+}

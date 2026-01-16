@@ -1,0 +1,12 @@
+- Set reconciliation frequency
+- Configure threshold limits
+- Choose alert preferences
+
+2. **Reconciliation Process**
+- AI matches invoices with portal data
+- Identifies mismatches
+- Suggests corrections
+- Generates reconciliation report
+
+### Manual Reconciliation
+1. **Start Reconciliation**

@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "data": {
+    "predictions": [
+      {
+        "period": "2024-04",
+        "predicted_tax": 12000,
+        "lower_bound": 10800,
+        "upper_bound": 13200,
+        "confidence": 0.92
+      }
+    ],
+    "model_metrics": {
+      "r_squared": 0.89,
+      "mae": 850,
+      "last_trained": "2024-03-31T23:00:00Z"
+    }
+  }
+}

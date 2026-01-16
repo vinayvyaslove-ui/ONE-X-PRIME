@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "filings": [
+      {
+        "id": "filing_123",
+        "period": "04-2024",
+        "type": "GSTR1",
+        "status": "filed",
+        "filed_date": "2024-04-20T15:30:00Z",
+        "arn": "ARN123456789012",
+        "liability": 15000.50,
+        "itc_claimed": 5000.25
+      }
+    ],
+    "meta": {
+      "total": 45,
+      "page": 1,
+      "limit": 10
+    }
+  }
+}

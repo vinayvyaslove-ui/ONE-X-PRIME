@@ -1,0 +1,6 @@
+- Enter customer details
+- Add line items
+- Apply tax rates
+- Generate PDF
+
+2. **Bulk Invoices**

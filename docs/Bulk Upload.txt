@@ -1,0 +1,19 @@
+- Upload Excel template
+- AI validates data
+- Generate multiple invoices
+- Send to customers
+
+3. **AI-Powered Features**
+- Auto-fill from past invoices
+- GSTIN validation
+- HSN code suggestions
+- Tax calculation
+
+### Invoice Templates
+1. **Available Templates**
+- Classic GST
+- Modern Professional
+- Minimalist
+- Detailed Commercial
+
+2. **Custom Template**

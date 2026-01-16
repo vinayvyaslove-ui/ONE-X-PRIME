@@ -1,0 +1,8 @@
+/* Additional responsive styles */
+@media (max-width: 640px) {
+    /* Mobile-specific styles */
+}
+
+@media (min-width: 1024px) {
+    /* Desktop-specific styles */
+}

@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "data": {
+    "period": {
+      "start": "2024-01-01",
+      "end": "2024-03-31"
+    },
+    "summary": {
+      "total_sales": 1500000,
+      "total_purchases": 900000,
+      "output_tax": 270000,
+      "input_tax": 162000,
+      "net_tax_payable": 108000
+    },
+    "monthly_breakdown": [
+      {
+        "month": "2024-01",
+        "sales": 500000,
+        "purchases": 300000,
+        "tax_payable": 36000
+      }
+    ]
+  }
+}

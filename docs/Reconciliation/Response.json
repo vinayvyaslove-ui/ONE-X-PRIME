@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "data": {
+    "reconciliation_id": "recon_123",
+    "status": "processing",
+    "estimated_completion": "2024-04-15T11:30:00Z",
+    "webhook_url": "https://your-webhook.com/reconcile-complete"
+  }
+}

@@ -1,0 +1,81 @@
+
+### Error Codes Reference
+| Code | Meaning | Action |
+|------|---------|--------|
+| ERR_AUTH_001 | Invalid credentials | Re-enter password |
+| ERR_GST_101 | GST portal timeout | Retry after 5 minutes |
+| ERR_API_201 | API rate limit exceeded | Wait 1 hour |
+| ERR_DB_301 | Database connection failed | Check internet |
+
+### Support Channels
+- **Email**: support@gst-ai.com
+- **Phone**: +91-XXXX-XXX-XXX
+- **Live Chat**: Available in app
+- **Documentation**: docs.gst-ai.com
+
+## ❓ FAQs
+
+### General Questions
+**Q: Is my data secure?**
+A: Yes, we use bank-level encryption, regular security audits, and comply with data protection regulations.
+
+**Q: Can I use this for multiple GSTINs?**
+A: Yes, enterprise plans support multiple GSTINs under one account.
+
+**Q: Is there a mobile app?**
+A: The web app is mobile-responsive. Native apps coming soon.
+
+### Billing & Plans
+**Q: What's included in the free plan?**
+A: Free plan includes 10 invoices/month, basic filing, and AI chat support.
+
+**Q: How do I upgrade/downgrade?**
+A: Go to Settings → Billing → Change Plan.
+
+**Q: Are there any hidden charges?**
+A: No hidden charges. All fees are transparently displayed.
+
+### Technical Questions
+**Q: Which accounting software do you integrate with?**
+A: Tally, QuickBooks, Zoho Books, SAP, and more via API.
+
+**Q: Do you support e-invoicing (IRN)?**
+A: Yes, fully automated e-invoicing with IRN generation.
+
+**Q: Can I export all my data?**
+A: Yes, you can export all data in multiple formats anytime.
+
+### Legal & Compliance
+**Q: Are you GST Suvidha Provider (GSP)?**
+A: We partner with certified GSPs for seamless GST portal integration.
+
+**Q: Who is responsible for filing errors?**
+A: While AI assists, ultimate responsibility lies with the taxpayer. Always review before submitting.
+
+**Q: Do you store sensitive financial data?**
+A: We store only necessary data with encryption and regular purging of sensitive information.
+
+---
+
+## 📞 Contact & Support
+
+### Business Hours
+- Monday to Friday: 9:00 AM - 6:00 PM IST
+- Saturday: 10:00 AM - 2:00 PM IST
+- Sunday: Closed
+
+### Emergency Support
+For urgent GST filing issues outside business hours:
+- Email: emergency@gst-ai.com
+- SMS: +91-XXXX-XXX-XXX
+
+### Feedback & Suggestions
+We value your feedback! Contact us at:
+- Product Feedback: feedback@gst-ai.com
+- Feature Requests: features@gst-ai.com
+- Partnership: partners@gst-ai.com
+
+---
+
+*Last Updated: January 2024*
+*Version: 2.1.0*

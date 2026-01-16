@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - GST Master</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.35.0/dist/apexcharts.min.css">
+</head>
+<body>
+    <!-- Sidebar (Same as dashboard) -->
+    <aside class="sidebar">
+        <!-- Sidebar content from dashboard -->
+    </aside>
+
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="page-title">
+                <h2><i class="fas fa-chart-bar"></i> Reports & Analytics</h2>
+            </div>
+            <div class="top-bar-actions">
+                <div class="date-range">
+                    <input type="month" id="reportMonth" value="2024-01">
+                    <span>to</span>
+                    <input type="month" id="reportMonthEnd" value="2024-01">
+                </div>
+                <button class="btn btn-primary" onclick="generateCustomReport()">
+                    <i class="fas fa-plus"></i> Custom Report
+                </button>
+                <button class="btn btn-success" onclick="exportAllReports()">
+                    <i class="fas fa-download"></i> Export All
+                </button>
+            </div>
+        </header>
+
+        <!-- Reports Content -->
+        <div class="reports-content">
+            <!-- Report Categories -->
+            <div class="report-categories">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-tab="gst">GST Reports</button>
+                    <button class="tab-btn" data-tab="financial">Financial Reports</button>
+                    <button class="tab-btn" data-tab="compliance">Compliance Reports</button>
+                    <button class="tab-btn" data-tab="analytics">Analytics</button>
+                    <button class="tab-btn" data-tab="custom">Custom Reports</button>
+                </div>
+            </div>
+
+            <!-- GST Reports Tab -->
+            <div id="gst-tab" class="tab-content active">
+                <div class="report-grid">
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3><i class="fas fa-file-invoice-dollar"></i> GSTR-1 Summary</h3>
+                            <div class="report-actions">
+                                <button class="btn-icon" onclick="viewReport('gstr1')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('gstr1', 'pdf')">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('gstr1', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stats">
+                                <div class="stat">
+                                    <span>Total Invoices</span>
+                                    <h4>156</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>Taxable Value</span>
+                                    <h4>₹45.2L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>GST Collected</span>
+                                    <h4>₹8.1L</h4>
+                                </div>
+                            </div>
+                            <div id="gstr1Chart" class="mini-chart"></div>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3><i class="fas fa-file-invoice"></i> GSTR-3B Summary</h3>
+                            <div class="report-actions">
+                                <button class="btn-icon" onclick="viewReport('gstr3b')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('gstr3b', 'pdf')">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('gstr3b', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stats">
+                                <div class="stat">
+                                    <span>Outward Tax</span>
+                                    <h4>₹8.1L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>Input Credit</span>
+                                    <h4>₹4.5L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>Net Tax</span>
+                                    <h4>₹3.6L</h4>
+                                </div>
+                            </div>
+                            <div id="gstr3bChart" class="mini-chart"></div>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3><i class="fas fa-exchange-alt"></i> Input Tax Credit</h3>
+                            <div class="report-actions">
+                                <button class="btn-icon" onclick="viewReport('itc')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('itc', 'pdf')">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('itc', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stats">
+                                <div class="stat">
+                                    <span>Available ITC</span>
+                                    <h4>₹4.5L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>Utilized ITC</span>
+                                    <h4>₹3.2L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>Balance ITC</span>
+                                    <h4>₹1.3L</h4>
+                                </div>
+                            </div>
+                            <div id="itcChart" class="mini-chart"></div>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3><i class="fas fa-balance-scale"></i> Tax Liability</h3>
+                            <div class="report-actions">
+                                <button class="btn-icon" onclick="viewReport('tax-liability')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('tax-liability', 'pdf')">
+                                    <i class="fas fa-file-pdf"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReport('tax-liability', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stats">
+                                <div class="stat">
+                                    <span>CGST</span>
+                                    <h4>₹4.05L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>SGST</span>
+                                    <h4>₹4.05L</h4>
+                                </div>
+                                <div class="stat">
+                                    <span>IGST</span>
+                                    <h4>₹0</h4>
+                                </div>
+                            </div>
+                            <div id="taxLiabilityChart" class="mini-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed GST Analysis -->
+                <div class="detailed-analysis">
+                    <div class="analysis-card">
+                        <div class="card-header">
+                            <h3>GST Analysis Over Time</h3>
+                            <select id="analysisPeriod">
+                                <option>Last 6 Months</option>
+                                <option>Last Year</option>
+                                <option>Quarterly</option>
+                            </select>
+                        </div>
+                        <div id="gstAnalysisChart" class="analysis-chart"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="card-header">
+                            <h3>GST Composition by Type</h3>
+                        </div>
+                        <div id="gstCompositionChart" class="analysis-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Reports Tab -->
+            <div id="financial-tab" class="tab-content">
+                <div class="report-grid">
+                    <!-- Sales Report Card -->
+                    <div class="report-card large">
+                        <div class="report-header">
+                            <h3><i class="fas fa-chart-line"></i> Sales Report</h3>
+                            <div class="report-actions">
+                                <button class="btn btn-sm btn-outline" onclick="customizeSalesReport()">
+                                    <i class="fas fa-sliders-h"></i> Customize
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-filters">
+                                <select id="salesPeriod">
+                                    <option>Monthly</option>
+                                    <option>Quarterly</option>
+                                    <option>Yearly</option>
+                                </select>
+                                <select id="salesCategory">
+                                    <option>All Categories</option>
+                                    <option>Product Sales</option>
+                                    <option>Service Sales</option>
+                                </select>
+                            </div>
+                            <div id="salesChart" class="detailed-chart"></div>
+                            <div class="report-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Month</th>
+                                            <th>Sales Amount</th>
+                                            <th>GST Collected</th>
+                                            <th>Growth %</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Sales data rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profit & Loss Report -->
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3><i class="fas fa-money-bill-wave"></i> Profit & Loss</h3>
+                        </div>
+                        <div class="report-body">
+                            <div class="financial-summary">
+                                <div class="income">
+                                    <h4>Income</h4>
+                                    <div class="amount positive">₹56.8L</div>
+                                </div>
+                                <div class="expenses">
+                                    <h4>Expenses</h4>
+                                    <div class="amount negative">₹34.2L</div>
+                                </div>
+                                <div class="net-profit">
+                                    <h4>Net Profit</h4>
+                                    <div class="amount positive">₹22.6L</div>
+                                </div>
+                            </div>
+                            <div id="profitLossChart" class="mini-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Reports Tab -->
+            <div id="compliance-tab" class="tab-content">
+                <div class="compliance-dashboard">
+                    <div class="compliance-score">
+                        <div class="score-circle">
+                            <svg width="120" height="120">
+                                <circle cx="60" cy="60" r="50"></circle>
+                                <circle cx="60" cy="60" r="50" style="stroke-dasharray: 314; stroke-dashoffset: 94;"></circle>
+                            </svg>
+                            <div class="score-text">
+                                <h2>85%</h2>
+                                <p>Compliance Score</p>
+                            </div>
+                        </div>
+                        <div class="score-breakdown">
+                            <h4>Compliance Breakdown</h4>
+                            <div class="breakdown-item">
+                                <span>Return Filing</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                                <span>90%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Payment Timeliness</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                                <span>85%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Document Upload</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="compliance-alerts">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Pending Compliance Actions</h3>
+                        <div class="alerts-list">
+                            <div class="alert-item critical">
+                                <div class="alert-icon">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>GSTR-1 Due in 5 days</h4>
+                                    <p>Period: Jan 2024</p>
+                                    <a href="gst.html" class="btn btn-sm btn-primary">File Now</a>
+                                </div>
+                            </div>
+                            <div class="alert-item warning">
+                                <div class="alert-icon">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>Payment Due for Dec 2023</h4>
+                                    <p>Amount: ₹45,230</p>
+                                    <a href="payments.html" class="btn btn-sm btn-success">Pay Now</a>
+                                </div>
+                            </div>
+                            <div class="alert-item info">
+                                <div class="alert-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>Annual Return Due</h4>
+                                    <p>GSTR-9 for FY 2022-23</p>
+                                    <a href="gst.html?return=gstr9" class="btn btn-sm btn-outline">Prepare</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Controls -->
+            <div class="export-controls">
+                <h3>Export Reports</h3>
+                <div class="export-options">
+                    <div class="export-format">
+                        <label>Format:</label>
+                        <select id="exportFormat">
+                            <option value="pdf">PDF</option>
+                            <option value="excel">Excel</option>
+                            <option value="csv">CSV</option>
+                        </select>
+                    </div>
+                    <div class="export-range">
+                        <label>Date Range:</label>
+                        <input type="date" id="exportStart">
+                        <span>to</span>
+                        <input type="date" id="exportEnd">
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-primary" onclick="exportSelectedReports()">
+                            <i class="fas fa-download"></i> Export Selected
+                        </button>
+                        <button class="btn btn-success" onclick="exportAllToPDF()">
+                            <i class="fas fa-file-pdf"></i> Export All as PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.35.0/dist/apexcharts.min.js"></script>
+    <script src="assets/js/reports.js"></script>
+    <script>
+        // Initialize charts and reports
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGSTCharts();
+            loadReportData();
+            setupTabSwitching();
+        });
+
+        function generateCustomReport() {
+            // Open custom report builder
+            window.location.href = 'custom-report.html';
+        }
+
+        function exportAllReports() {
+            // Export all reports logic
+            alert('Exporting all reports...');
+        }
+    </script>
+</body>
+</html>

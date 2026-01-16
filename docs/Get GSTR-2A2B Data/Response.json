@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "invoices": [
+      {
+        "supplier_gstin": "27AABCU9603R1ZX",
+        "invoice_no": "INV-001",
+        "invoice_date": "2024-04-15",
+        "taxable_value": 10000,
+        "cgst": 900,
+        "sgst": 900,
+        "igst": 0,
+        "total": 11800,
+        "match_status": "matched"
+      }
+    ],
+    "summary": {
+      "total_invoices": 150,
+      "total_value": 1500000,
+      "total_tax": 270000,
+      "matched": 120,
+      "unmatched": 30
+    }
+  }
+}

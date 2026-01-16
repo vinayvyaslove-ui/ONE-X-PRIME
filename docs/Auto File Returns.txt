@@ -1,0 +1,14 @@
+
+2. **Configure Schedule**
+- Choose filing frequency
+- Set reminder days before deadline
+- Configure approval requirements
+
+3. **Review & Submit**
+- AI prepares draft returns
+- Review auto-calculated values
+- Approve with digital signature
+- Track filing status
+
+### Manual Filing
+1. **Select Return Type**

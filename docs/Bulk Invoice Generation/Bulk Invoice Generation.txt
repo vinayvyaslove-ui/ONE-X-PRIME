@@ -1,0 +1,2 @@
+POST /invoices/bulk
+Content-Type: multipart/form-data

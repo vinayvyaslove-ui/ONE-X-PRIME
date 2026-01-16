@@ -1,0 +1,32 @@
+- Month-wise tax liability
+- ITC available/claimed
+- Payment history
+- Refund status
+
+2. **Compliance Report**
+- Filing timeline
+- Penalty history
+- Compliance score
+- Improvement suggestions
+
+### Analytics Dashboard
+1. **Key Metrics**
+- Revenue trends
+- Tax efficiency
+- Vendor compliance
+- Filing accuracy
+
+2. **Predictive Analytics**
+- Future tax liability
+- Cash flow projections
+- Compliance risk score
+- Growth indicators
+
+### Export Options
+1. **Formats Available**
+- PDF (Print-ready)
+- Excel (Detailed data)
+- CSV (For accounting software)
+- JSON (For APIs)
+
+2. **Schedule Reports**

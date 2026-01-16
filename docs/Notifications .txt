@@ -1,0 +1,6 @@
+- Set trigger conditions
+- Define recipients
+- Choose delivery method
+
+### API Configuration
+1. **Generate API Keys**

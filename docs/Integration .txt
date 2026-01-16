@@ -1,0 +1,14 @@
+
+2. **Production Mode**
+- Enter production credentials
+- Test connection
+- Set as active
+
+### Notification Settings
+1. **Alert Types**
+- Email notifications
+- SMS alerts
+- Push notifications
+- WhatsApp messages
+
+2. **Custom Alerts**

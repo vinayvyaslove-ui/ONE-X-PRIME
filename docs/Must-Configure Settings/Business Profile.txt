@@ -1,0 +1,5 @@
+Settings → Business Profile → Complete:
+- Legal name & address
+- Bank account details
+- Logo upload
+- Signature

@@ -1,0 +1,6 @@
+{
+  "url": "https://your-server.com/webhook",
+  "events": ["invoice.created", "gst.filed"],
+  "secret": "your_webhook_secret",
+  "description": "Production webhook"
+}

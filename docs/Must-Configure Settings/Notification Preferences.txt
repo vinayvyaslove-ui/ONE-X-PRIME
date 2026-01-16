@@ -1,0 +1,4 @@
+Settings → Notifications → Enable:
+- Email alerts for deadlines
+- SMS for payment reminders
+- Push for filing status

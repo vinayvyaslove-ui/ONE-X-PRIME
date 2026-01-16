@@ -1,0 +1,10 @@
+
+## **Additional Recommended Documentation:**
+
+### **docs/DEVELOPER_GUIDE.md** (for technical users)
+```markdown
+# Developer Guide
+- Local development setup
+- Testing strategies
+- Contribution guidelines
+- Deployment procedures

@@ -1,0 +1,8 @@
+
+2. **Match Transactions**
+- View unmatched invoices
+- Auto-match suggestions
+- Manual matching option
+- Flag discrepancies
+
+3. **Resolve Discrepancies**

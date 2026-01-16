@@ -1,0 +1,2 @@
+Settings → Data Import → Choose File
+Map columns → Start Import

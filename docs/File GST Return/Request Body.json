@@ -1,0 +1,12 @@
+{
+  "gstin": "27AABCU9603R1ZX",
+  "period": "04-2024",
+  "return_type": "GSTR1",
+  "data": {
+    "b2b": [...],
+    "b2c": [...],
+    "cdnr": [...]
+  },
+  "auto_calculate": true,
+  "draft": false
+}

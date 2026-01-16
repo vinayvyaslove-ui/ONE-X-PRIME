@@ -1,0 +1,9 @@
+{
+  "type": "event",
+  "channel": "invoices",
+  "event": "created",
+  "data": {
+    "invoice_id": "inv_123",
+    "invoice_number": "INV-2024-001"
+  }
+}

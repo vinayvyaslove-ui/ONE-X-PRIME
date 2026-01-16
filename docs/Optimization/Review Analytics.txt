@@ -1,0 +1,2 @@
+Check: Compliance score improvement
+Action: Implement AI suggestions

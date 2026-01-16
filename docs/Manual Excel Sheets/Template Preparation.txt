@@ -1,0 +1,3 @@
+Download: Template from GST AI
+Format: Match column headers
+Validate: GSTINs and amounts

@@ -1,0 +1,164 @@
+{
+  "gstSlabs": [
+    {
+      "rate": "0%",
+      "cgst": 0,
+      "sgst": 0,
+      "igst": 0,
+      "description": "Nil Rated",
+      "commonItems": [
+        "Fresh fruits and vegetables",
+        "Milk",
+        "Curd",
+        "Buttermilk",
+        "Natural honey",
+        "Flour",
+        "Besan",
+        "Prasad",
+        "Salt",
+        "Bindi",
+        "Sindur",
+        "Bangles",
+        "Stamps",
+        "Printed books",
+        "Newspapers",
+        "Drawing books",
+        "Judicial papers"
+      ]
+    },
+    {
+      "rate": "0.25%",
+      "cgst": 0.125,
+      "sgst": 0.125,
+      "igst": 0.25,
+      "description": "0.25% GST",
+      "commonItems": [
+        "Rough precious and semi-precious stones",
+        "Diamond"
+      ]
+    },
+    {
+      "rate": "3%",
+      "cgst": 1.5,
+      "sgst": 1.5,
+      "igst": 3,
+      "description": "3% GST",
+      "commonItems": [
+        "Gold",
+        "Silver",
+        "Diamond jewellery",
+        "Pearls"
+      ]
+    },
+    {
+      "rate": "5%",
+      "cgst": 2.5,
+      "sgst": 2.5,
+      "igst": 5,
+      "description": "5% GST",
+      "commonItems": [
+        "Apparels below Rs. 1000",
+        "Footwear below Rs. 500",
+        "Railway tickets",
+        "Flight tickets (economy)",
+        "Restaurant services (non-AC)",
+        "Tea and coffee",
+        "Medicines",
+        "Coal",
+        "Life-saving drugs",
+        "Sweets",
+        "Edible oil",
+        "Packed paneer",
+        "Domestic LPG",
+        "Skimmed milk powder"
+      ]
+    },
+    {
+      "rate": "12%",
+      "cgst": 6,
+      "sgst": 6,
+      "igst": 12,
+      "description": "12% GST",
+      "commonItems": [
+        "Apparels above Rs. 1000",
+        "Footwear above Rs. 500",
+        "Butter",
+        "Ghee",
+        "Fruit juices",
+        "Prepared foods",
+        "Ayurvedic medicines",
+        "Tooth powder",
+        "Umbrella",
+        "Sewing machine",
+        "Cell phones",
+        "Business class flight tickets",
+        "Non-AC restaurants (serving liquor)",
+        "Work contracts"
+      ]
+    },
+    {
+      "rate": "18%",
+      "cgst": 9,
+      "sgst": 9,
+      "igst": 18,
+      "description": "18% GST",
+      "commonItems": [
+        "Hair oil",
+        "Toothpaste",
+        "Soap",
+        "Capital goods",
+        "Industrial intermediaries",
+        "Pasta",
+        "Cornflakes",
+        "Soups",
+        "Ice cream",
+        "Instant food mixes",
+        "Mineral water",
+        "Printed circuits",
+        "Camera",
+        "Speakers",
+        "Monitors",
+        "AC restaurants",
+        "IT services",
+        "Telecom services",
+        "Financial services"
+      ]
+    },
+    {
+      "rate": "28%",
+      "cgst": 14,
+      "sgst": 14,
+      "igst": 28,
+      "description": "28% GST",
+      "commonItems": [
+        "Luxury items",
+        "Automobiles",
+        "Motorcycles",
+        "Aerated drinks",
+        "Cigarettes",
+        "Tobacco",
+        "Pan masala",
+        "Cement",
+        "Paints",
+        "Tyres",
+        "Air conditioners",
+        "Dishwashers",
+        "Washing machines",
+        "Vacuum cleaners",
+        "Shavers",
+        "Hair clippers",
+        "Automobile parts",
+        "Five-star hotels",
+        "Movie tickets above Rs. 100",
+        "Race club betting"
+      ]
+    }
+  ],
+  "cessRates": {
+    "automobiles": 15,
+    "cigarettes": 290,
+    "aerated_drinks": 12,
+    "coal": 400,
+    "pan_masala": 135
+  }
+}

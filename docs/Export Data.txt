@@ -1,0 +1,2 @@
+Tally: Reports → Export → JSON/Excel
+QuickBooks: File → Export → CSV

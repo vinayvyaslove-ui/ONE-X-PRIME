@@ -1,0 +1,2 @@
+Add: Accountant, CA, Staff
+Assign: Role-based permissions

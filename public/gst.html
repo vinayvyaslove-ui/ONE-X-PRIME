@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Returns - GST Master</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar (Same as dashboard) -->
+    <aside class="sidebar">
+        <!-- Sidebar content from dashboard -->
+    </aside>
+
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="page-title">
+                <h2><i class="fas fa-file-invoice-dollar"></i> GST Returns</h2>
+            </div>
+            <div class="top-bar-actions">
+                <select id="returnPeriod" onchange="loadReturnData()">
+                    <option value="012024">January 2024</option>
+                    <option value="122023">December 2023</option>
+                    <option value="112023">November 2023</option>
+                </select>
+                <button class="btn btn-primary" onclick="quickFileReturn()">
+                    <i class="fas fa-bolt"></i> Quick File
+                </button>
+                <button class="btn btn-success" onclick="fetchFromGSTPortal()">
+                    <i class="fas fa-sync-alt"></i> Sync with GST Portal
+                </button>
+            </div>
+        </header>
+
+        <!-- GST Returns Content -->
+        <div class="gst-content">
+            <!-- Return Status Overview -->
+            <div class="return-overview">
+                <div class="return-card gstr1">
+                    <div class="return-header">
+                        <h3><i class="fas fa-file-export"></i> GSTR-1</h3>
+                        <span class="return-status pending">Pending</span>
+                    </div>
+                    <div class="return-details">
+                        <p>Outward supplies of goods or services</p>
+                        <div class="due-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            Due: 11 Feb 2024
+                        </div>
+                    </div>
+                    <div class="return-actions">
+                        <button class="btn btn-primary" onclick="fileGSTR1()">
+                            File Return
+                        </button>
+                        <button class="btn btn-outline" onclick="viewDraft('gstr1')">
+                            View Draft
+                        </button>
+                    </div>
+                </div>
+
+                <div class="return-card gstr3b">
+                    <div class="return-header">
+                        <h3><i class="fas fa-file-invoice"></i> GSTR-3B</h3>
+                        <span class="return-status filed">Filed</span>
+                    </div>
+                    <div class="return-details">
+                        <p>Monthly summary return</p>
+                        <div class="filed-date">
+                            <i class="fas fa-check-circle"></i>
+                            Filed: 20 Jan 2024
+                        </div>
+                    </div>
+                    <div class="return-actions">
+                        <button class="btn btn-outline" onclick="viewFiledReturn('gstr3b')">
+                            View Filed
+                        </button>
+                        <button class="btn btn-outline" onclick="downloadAck('gstr3b')">
+                            Download ARN
+                        </button>
+                    </div>
+                </div>
+
+                <div class="return-card gstr9">
+                    <div class="return-header">
+                        <h3><i class="fas fa-calendar-alt"></i> GSTR-9</h3>
+                        <span class="return-status upcoming">Upcoming</span>
+                    </div>
+                    <div class="return-details">
+                        <p>Annual return</p>
+                        <div class="due-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            Due: 31 Dec 2024
+                        </div>
+                    </div>
+                    <div class="return-actions">
+                        <button class="btn btn-outline" onclick="prepareGSTR9()">
+                            Prepare
+                        </button>
+                        <button class="btn btn-outline" onclick="viewPreviousYear()">
+                            View Previous
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Filing Process -->
+            <div class="filing-process">
+                <h3>File GSTR-1 for January 2024</h3>
+                <div class="process-steps">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Review Invoices</h4>
+                            <p>Check and validate all outward supplies</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Match with GSTR-2A</h4>
+                            <p>Reconcile with recipient's uploaded data</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Calculate Tax</h4>
+                            <p>Compute tax liability and input credit</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>File & Pay</h4>
+                            <p>Submit return and pay any dues</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoice Review Section -->
+                <div class="invoice-review">
+                    <div class="section-header">
+                        <h4>Outward Supplies Review</h4>
+                        <div class="section-actions">
+                            <button class="btn btn-sm btn-outline" onclick="addMissingInvoice()">
+                                <i class="fas fa-plus"></i> Add Missing Invoice
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="importFromAccounting()">
+                                <i class="fas fa-file-import"></i> Import from Accounting
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="invoice-summary">
+                        <div class="summary-card">
+                            <h5>B2B Invoices</h5>
+                            <div class="summary-value">45</div>
+                            <div class="summary-amount">₹28.5L</div>
+                        </div>
+                        <div class="summary-card">
+                            <h5>B2C Invoices</h5>
+                            <div class="summary-value">89</div>
+                            <div class="summary-amount">₹16.7L</div>
+                        </div>
+                        <div class="summary-card">
+                            <h5>Export Invoices</h5>
+                            <div class="summary-value">12</div>
+                            <div class="summary-amount">₹4.8L</div>
+                        </div>
+                        <div class="summary-card total">
+                            <h5>Total Taxable Value</h5>
+                            <div class="summary-value">146</div>
+                            <div class="summary-amount">₹50.0L</div>
+                        </div>
+                    </div>
+
+                    <!-- Invoice Table -->
+                    <div class="table-container">
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>Invoice No</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>GSTIN</th>
+                                    <th>Taxable Value</th>
+                                    <th>CGST</th>
+                                    <th>SGST</th>
+                                    <th>IGST</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Invoice rows will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- GSTR-2A Reconciliation -->
+                <div class="reconciliation-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-exchange-alt"></i> GSTR-2A Reconciliation</h4>
+                        <button class="btn btn-primary" onclick="fetchGSTR2A()">
+                            <i class="fas fa-sync"></i> Fetch Latest Data
+                        </button>
+                    </div>
+                    
+                    <div class="reconciliation-stats">
+                        <div class="stat-card matched">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>132</h4>
+                                <p>Invoices Matched</p>
+                            </div>
+                        </div>
+                        <div class="stat-card pending">
+                            <div class="stat-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>14</h4>
+                                <p>Pending Match</p>
+                            </div>
+                        </div>
+                        <div class="stat-card mismatch">
+                            <div class="stat-icon">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>2</h4>
+                                <p>Mismatches Found</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mismatch Details -->
+                    <div class="mismatch-details">
+                        <h5>Mismatches Requiring Attention:</h5>
+                        <div class="mismatch-list">
+                            <div class="mismatch-item">
+                                <div class="mismatch-info">
+                                    <strong>INV-2024-045</strong>
+                                    <p>Amount mismatch: Your ₹50,000 vs Their ₹45,000</p>
+                                </div>
+                                <div class="mismatch-actions">
+                                    <button class="btn btn-sm btn-outline" onclick="acceptTheirAmount()">
+                                        Accept Their Amount
+                                    </button>
+                                    <button class="btn btn-sm btn-primary" onclick="uploadProof()">
+                                        Upload Proof
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tax Calculation -->
+                <div class="tax-calculation">
+                    <div class="section-header">
+                        <h4>Tax Calculation Summary</h4>
+                    </div>
+                    
+                    <div class="tax-summary">
+                        <div class="tax-section">
+                            <h5>Outward Tax Liability</h5>
+                            <div class="tax-row">
+                                <span>Taxable Value:</span>
+                                <span>₹50,00,000</span>
+                            </div>
+                            <div class="tax-row">
+                                <span>CGST @ 9%:</span>
+                                <span>₹4,50,000</span>
+                            </div>
+                            <div class="tax-row">
+                                <span>SGST @ 9%:</span>
+                                <span>₹4,50,000</span>
+                            </div>
+                            <div class="tax-row total">
+                                <span>Total Outward Tax:</span>
+                                <span>₹9,00,000</span>
+                            </div>
+                        </div>
+
+                        <div class="tax-section">
+                            <h5>Input Tax Credit</h5>
+                            <div class="tax-row">
+                                <span>Eligible ITC:</span>
+                                <span>₹4,50,000</span>
+                            </div>
+                            <div class="tax-row">
+                                <span>CGST Credit:</span>
+                                <span>₹2,25,000</span>
+                            </div>
+                            <div class="tax-row">
+                                <span>SGST Credit:</span>
+                                <span>₹2,25,000</span>
+                            </div>
+                            <div class="tax-row total">
+                                <span>Net Tax Payable:</span>
+                                <span class="amount-payable">₹4,50,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filing Actions -->
+                <div class="filing-actions">
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" onclick="saveAsDraft()">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                        <button class="btn btn-primary" onclick="previewReturn()">
+                            <i class="fas fa-eye"></i> Preview Return
+                        </button>
+                        <button class="btn btn-success" onclick="fileReturn()">
+                            <i class="fas fa-paper-plane"></i> File Return
+                        </button>
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="checkbox" id="payNow" checked>
+                            Pay tax liability now
+                        </label>
+                        <div class="payment-methods">
+                            <select id="paymentMethod">
+                                <option value="netbanking">Net Banking</option>
+                                <option value="creditcard">Credit Card</option>
+                                <option value="debitcard">Debit Card</option>
+                                <option value="upi">UPI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return History -->
+            <div class="return-history">
+                <h3>Filing History</h3>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Return Type</th>
+                            <th>Period</th>
+                            <th>Filed Date</th>
+                            <th>ARN No</th>
+                            <th>Tax Paid</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GSTR-3B</td>
+                            <td>Dec 2023</td>
+                            <td>20 Dec 2023</td>
+                            <td>ARN1234567890</td>
+                            <td>₹3,45,230</td>
+                            <td><span class="status filed">Filed</span></td>
+                            <td>
+                                <button class="btn-icon" onclick="viewReturn('gstr3b-dec')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="downloadReturn('gstr3b-dec')">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- More history rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content wide">
+                <div class="modal-header">
+                    <h3>Return Preview - GSTR-1 January 2024</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Preview content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" onclick="closePreview()">
+                        Close
+                    </button>
+                    <button class="btn btn-primary" onclick="proceedToPayment()">
+                        Proceed to Payment & File
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Pay Tax Liability</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Payment form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="assets/js/gst.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReturnData();
+            initializeGSTFiling();
+        });
+
+        function fileGSTR1() {
+            // Start GSTR-1 filing process
+            document.querySelector('.filing-process').scrollIntoView();
+        }
+
+        function fetchGSTR2A() {
+            // Fetch GSTR-2A data
+            alert('Fetching latest GSTR-2A data from GST portal...');
+        }
+
+        function fileReturn() {
+            // File the return
+            document.getElementById('previewModal').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

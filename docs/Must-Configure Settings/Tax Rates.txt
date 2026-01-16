@@ -1,0 +1,5 @@
+Settings → Tax Rates → Add:
+- CGST: 9%
+- SGST: 9%
+- IGST: 18%
+- Cess: 0%

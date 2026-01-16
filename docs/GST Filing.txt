@@ -1,0 +1,32 @@
+
+2. **Upload Data**
+- Import from accounting software
+- Upload Excel/CSV files
+- Use API integration
+- Manual entry option
+
+3. **AI-Assisted Validation**
+- AI checks for discrepancies
+- Validates GSTINs
+- Matches with portal data
+- Suggests corrections
+
+4. **Submit & Track**
+- Preview return summary
+- Make payment (if applicable)
+- Submit to GST portal
+- Receive acknowledgment
+
+### Filing Status Tracking
+| Status | Description | Action Required |
+|--------|-------------|-----------------|
+| Draft | Return prepared but not submitted | Review and submit |
+| Pending | Submitted, awaiting processing | Monitor status |
+| Filed | Successfully filed | Download ARN |
+| Failed | Filing failed | Check error and retry |
+| Late | Filed after deadline | Pay late fees |
+
+## 🧾 Invoice Management
+
+### Create Invoice
+1. **Quick Invoice**

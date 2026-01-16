@@ -1,0 +1,6 @@
+{
+  "periods": 3,
+  "confidence_level": 0.95,
+  "include_seasonality": true,
+  "factors": ["gdp_growth", "industry_trend"]
+}

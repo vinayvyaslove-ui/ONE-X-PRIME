@@ -1,0 +1,7 @@
+- Daily/weekly/monthly
+- Email delivery
+- Automatic archiving
+
+## ⚙️ Settings & Configuration
+
+### Business Profile

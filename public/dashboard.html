@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GST Master</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.35.0/dist/apexcharts.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="GST Master">
+                <span>GST Master</span>
+            </div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="gst.html">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>GST Returns</span>
+                        <span class="badge badge-warning">2 Pending</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="invoice.html">
+                        <i class="fas fa-receipt"></i>
+                        <span>Invoices</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="voice.html">
+                        <i class="fas fa-robot"></i>
+                        <span>Voice Assistant</span>
+                        <span class="badge badge-new">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Reconciliation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Payments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-box"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="assets/images/avatar.png" alt="User">
+                <div>
+                    <h4>Rajesh Kumar</h4>
+                    <p>rajesh@example.com</p>
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search invoices, returns, or customers...">
+            </div>
+            <div class="top-bar-actions">
+                <button class="btn btn-primary" onclick="quickFileReturn()">
+                    <i class="fas fa-plus"></i> Quick File
+                </button>
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <div class="gstin-selector">
+                    <select id="gstinSelector">
+                        <option value="27ABCDE1234F1Z5">27ABCDE1234F1Z5 - Rajesh Enterprises</option>
+                        <option value="29XYZAB5678G2H3">29XYZAB5678G2H3 - Rajesh Traders</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon bg-primary">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₹1,25,430</h3>
+                        <p>Total Tax Liability</p>
+                    </div>
+                    <span class="stat-trend up">+12.5%</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-success">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₹89,560</h3>
+                        <p>Input Tax Credit</p>
+                    </div>
+                    <span class="stat-trend up">+8.3%</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-warning">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Pending Returns</p>
+                    </div>
+                    <span class="stat-trend down">Due in 5 days</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-info">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>156</h3>
+                        <p>Invoices This Month</p>
+                    </div>
+                    <span class="stat-trend up">+24%</span>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Tax Liability Trend</h3>
+                        <select class="period-selector">
+                            <option>Last 6 Months</option>
+                            <option>Last Year</option>
+                            <option>Quarterly</option>
+                        </select>
+                    </div>
+                    <div id="taxChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Return Filing Status</h3>
+                    </div>
+                    <div id="returnsChart" class="chart-container"></div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Pending Actions -->
+            <div class="activity-section">
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>GSTR-3B Filed Successfully</h4>
+                                <p>For period December 2023 • Just now</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Payment Due for GSTR-1</h4>
+                                <p>₹45,230 due in 3 days • 2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon info">
+                                <i class="fas fa-file-upload"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>25 Invoices Uploaded</h4>
+                                <p>Successfully processed • Today, 10:30 AM</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon primary">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>New Customer Added</h4>
+                                <p>ABC Enterprises • Yesterday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pending-actions-card">
+                    <div class="card-header">
+                        <h3>Pending Actions</h3>
+                    </div>
+                    <div class="pending-list">
+                        <div class="pending-item">
+                            <div class="pending-icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            <div class="pending-content">
+                                <h4>File GSTR-1 for Jan 2024</h4>
+                                <p>Due date: 11 Feb 2024</p>
+                                <a href="gst.html?return=gstr1" class="btn btn-sm btn-primary">File Now</a>
+                            </div>
+                        </div>
+                        <div class="pending-item">
+                            <div class="pending-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="pending-content">
+                                <h4>Pay Tax Liability</h4>
+                                <p>Amount: ₹56,780</p>
+                                <a href="payments.html" class="btn btn-sm btn-success">Pay Now</a>
+                            </div>
+                        </div>
+                        <div class="pending-item">
+                            <div class="pending-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="pending-content">
+                                <h4>Reconcile Bank Statement</h4>
+                                <p>January transactions pending</p>
+                                <a href="reconciliation.html" class="btn btn-sm btn-outline">Reconcile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <h3>Quick Actions</h3>
+                <div class="links-grid">
+                    <a href="invoice.html?action=create" class="quick-link">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Create Invoice</span>
+                    </a>
+                    <a href="gst.html?return=gstr3b" class="quick-link">
+                        <i class="fas fa-file-export"></i>
+                        <span>File GSTR-3B</span>
+                    </a>
+                    <a href="reports.html?report=tax-summary" class="quick-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Tax Summary</span>
+                    </a>
+                    <a href="voice.html" class="quick-link">
+                        <i class="fas fa-microphone"></i>
+                        <span>Ask Assistant</span>
+                    </a>
+                    <a href="#" class="quick-link" onclick="downloadReconciliationReport()">
+                        <i class="fas fa-download"></i>
+                        <span>Download Report</span>
+                    </a>
+                    <a href="settings.html#gstin" class="quick-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Manage GSTINs</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="close-notifications">&times;</button>
+        </div>
+        <div class="notification-list">
+            <!-- Notifications will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Voice Assistant Widget -->
+    <div class="voice-widget" id="voiceWidget">
+        <button class="voice-btn" onclick="toggleVoiceAssistant()">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <div class="voice-panel">
+            <div class="voice-header">
+                <h4>Voice Assistant</h4>
+                <button class="close-voice">&times;</button>
+            </div>
+            <div class="voice-output">
+                <p>Click the microphone and ask me anything about GST!</p>
+            </div>
+            <div class="voice-input">
+                <input type="text" placeholder="Or type your question here...">
+                <button class="btn btn-primary">Ask</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.35.0/dist/apexcharts.min.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script>
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            loadNotifications();
+        });
+
+        function quickFileReturn() {
+            // Quick file return logic
+            window.location.href = 'gst.html?quick=true';
+        }
+    </script>
+</body>
+</html>

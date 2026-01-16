@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Accounting System - Complete Accounting Solution</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <!-- Voice Recognition Polyfill -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo">🎤</span>
+                <h1>Voice Accounting</h1>
+                <span class="badge">Beta</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="/" class="nav-link active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="/dashboard" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="/voice" class="nav-link">
+                    <i class="fas fa-microphone"></i> Voice
+                </a>
+                <a href="/invoice" class="nav-link">
+                    <i class="fas fa-file-invoice"></i> Invoices
+                </a>
+                <a href="/reports" class="nav-link">
+                    <i class="fas fa-chart-bar"></i> Reports
+                </a>
+                <a href="/gst" class="nav-link">
+                    <i class="fas fa-receipt"></i> GST
+                </a>
+                <a href="/products" class="nav-link">
+                    <i class="fas fa-box"></i> Products
+                </a>
+                <a href="/customers" class="nav-link">
+                    <i class="fas fa-users"></i> Customers
+                </a>
+            </div>
+            
+            <div class="nav-controls">
+                <!-- Voice Controls -->
+                <div class="voice-controls">
+                    <button id="start-voice" class="btn-voice" title="Start Voice">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button id="stop-voice" class="btn-voice stop" title="Stop Voice">
+                        <i class="fas fa-microphone-slash"></i>
+                    </button>
+                </div>
+                
+                <!-- Language Selector -->
+                <select id="language-select" class="language-select">
+                    <option value="hi">🇮🇳 Hindi</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ta">🇮🇳 Tamil</option>
+                    <option value="te">🇮🇳 Telugu</option>
+                    <option value="bn">🇮🇳 Bengali</option>
+                    <option value="gu">🇮🇳 Gujarati</option>
+                    <option value="mr">🇮🇳 Marathi</option>
+                    <option value="kn">🇮🇳 Kannada</option>
+                    <option value="ml">🇮🇳 Malayalam</option>
+                    <option value="pa">🇮🇳 Punjabi</option>
+                </select>
+                
+                <!-- Theme Toggle -->
+                <label class="theme-toggle">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </label>
+                
+                <!-- User Menu -->
+                <div class="user-menu">
+                    <button class="btn-user">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="user-dropdown">
+                        <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="/help"><i class="fas fa-question-circle"></i> Help</a>
+                        <hr>
+                        <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Voice Feedback -->
+    <div class="voice-feedback-container">
+        <div id="voice-feedback" class="voice-feedback voice-ready">
+            Say something like "बिक्री दर्ज करो" or "Record sale"
+        </div>
+        <div id="command-result" class="command-result"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Accounting Made Simple with Voice</h2>
+                <p class="hero-subtitle">
+                    Speak in your language. Let AI handle the accounting.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">9+</span>
+                        <span class="stat-label">Indian Languages</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">GST Compliant</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">₹0</span>
+                        <span class="stat-label">No Accountant Needed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Voice Assistant</span>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <button class="btn-hero" onclick="window.VoiceAccounting.startVoice()">
+                        <i class="fas fa-microphone"></i> Start Speaking
+                    </button>
+                    <button class="btn-hero secondary" onclick="window.location.href='/dashboard'">
+                        <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                    </button>
+                    <button class="btn-hero outline" onclick="window.VoiceAccounting.showWelcome()">
+                        <i class="fas fa-play-circle"></i> Watch Demo
+                    </button>
+                </div>
+                
+                <div class="hero-voice-examples">
+                    <h4>Try saying:</h4>
+                    <div class="voice-examples">
+                        <span class="voice-example">"बिक्री दर्ज करो"</span>
+                        <span class="voice-example">"बैलेंस बताओ"</span>
+                        <span class="voice-example">"जीएसटी कैलकुलेट करो"</span>
+                        <span class="voice-example">"बिल बनाओ"</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="voice-animation">
+                    <div class="mic-icon">🎤</div>
+                    <div class="sound-waves">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Everything You Need for Your Business</h2>
+            <p class="section-subtitle">Complete accounting solution designed for Indian businesses</p>
+            
+            <div class="features-grid">
+                <!-- Feature 1: Voice Accounting -->
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Voice-First Accounting</h3>
+                    <p>Speak in Hindi, Tamil, Telugu, Bengali, Gujarati, Marathi, Kannada, Malayalam, or Punjabi. No typing required.</p>
+                    <ul class="feature-list">
+                        <li>Voice commands for all accounting tasks</li>
+                        <li>Natural language understanding</li>
+                        <li>Multi-language support</li>
+                        <li>Hands-free operation</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2: GST Compliance -->
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Automated GST Compliance</h3>
+                    <p>Automatic GST calculation, return filing, and compliance management.</p>
+                    <ul class="feature-list">
+                        <li>GSTR-1, GSTR-3B, GSTR-9 generation</li>
+                        <li>E-invoicing & E-way bill</li>
+                        <li>ITC reconciliation</li>
+                        <li>Auto-filing with GSTN</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3: Complete Accounting -->
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Complete Double-Entry System</h3>
+                    <p>Professional accounting with full financial statements and reports.</p>
+                    <ul class="feature-list">
+                        <li>Balance Sheet & Profit/Loss</li>
+                        <li>Cash Flow Statement</li>
+                        <li>Trial Balance</li>
+                        <li>Ledger & Day Book</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4: Inventory Management -->
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Smart Inventory</h3>
+                    <p>Track stock, manage purchases, and automate reordering.</p>
+                    <ul class="feature-list">
+                        <li>Barcode scanning</li>
+                        <li>Stock alerts</li>
+                        <li>Batch tracking</li>
+                        <li>Valuation reports</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5: Mobile Friendly -->
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works Everywhere</h3>
+                    <p>Use on mobile, tablet, or desktop. Works offline too.</p>
+                    <ul class="feature-list">
+                        <li>Progressive Web App</li>
+                        <li>Offline capability</li>
+                        <li>Mobile app feel</li>
+                        <li>Push notifications</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6: AI Assistant -->
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Accountant Assistant</h3>
+                    <p>24/7 AI assistant that finds errors and suggests optimizations.</p>
+                    <ul class="feature-list">
+                        <li>Error detection & auto-fix</li>
+                        <li>Tax optimization</li>
+                        <li>Business insights</li>
+                        <li>Predictive analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions-section">
+            <h2>Quick Actions</h2>
+            <p>Get things done with one click or voice command</p>
+            
+            <div id="quick-actions" class="quick-actions">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Dashboard Preview -->
+        <section class="dashboard-preview">
+            <h2>Live Dashboard Preview</h2>
+            <div class="preview-container">
+                <!-- Balance Cards -->
+                <div class="preview-row">
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="card-icon">💰</span>
+                            <h4>Cash Balance</h4>
+                        </div>
+                        <div class="preview-card-value" id="cash-balance">₹50,000</div>
+                        <div class="preview-card-change positive">+12%</div>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="card-icon">🏦</span>
+                            <h4>Bank Balance</h4>
+                        </div>
+                        <div class="preview-card-value" id="bank-balance">₹2,50,000</div>
+                        <div class="preview-card-change positive">+8%</div>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="card-icon">📈</span>
+                            <h4>This Month Sales</h4>
+                        </div>
+                        <div class="preview-card-value" id="sales-amount">₹1,25,000</div>
+                        <div class="preview-card-change positive">+15.5%</div>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="card-icon">📉</span>
+                            <h4>This Month Expenses</h4>
+                        </div>
+                        <div class="preview-card-value" id="expenses-amount">₹45,000</div>
+                        <div class="preview-card-change negative">-5%</div>
+                    </div>
+                </div>
+                
+                <!-- Charts -->
+                <div class="preview-row">
+                    <div class="preview-chart">
+                        <canvas id="sales-chart"></canvas>
+                    </div>
+                    <div class="preview-chart">
+                        <canvas id="expense-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="preview-activity">
+                    <h4>Recent Activity</h4>
+                    <div id="recent-activity" class="activity-list">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Language Support -->
+        <section class="languages">
+            <h2>Speak Your Language</h2>
+            <p class="section-subtitle">We speak all major Indian languages</p>
+            
+            <div class="language-grid">
+                <div class="language-card hindi">
+                    <span class="flag">🇮🇳</span>
+                    <h3>Hindi</h3>
+                    <p>हिन्दी में बोलें</p>
+                    <div class="language-examples">
+                        <span>"बिक्री दर्ज करो"</span>
+                        <span>"बैलेंस बताओ"</span>
+                    </div>
+                </div>
+                
+                <div class="language-card tamil">
+                    <span class="flag">🇮🇳</span>
+                    <h3>Tamil</h3>
+                    <p>தமிழில் பேசுங்கள்</p>
+                    <div class="language-examples">
+                        <span>"விற்பனை பதிவு செய்"</span>
+                        <span>"இருப்பு சொல்லு"</span>
+                    </div>
+                </div>
+                
+                <div class="language-card telugu">
+                    <span class="flag">🇮🇳</span>
+                    <h3>Telugu</h3>
+                    <p>తెలుగులో మాట్లాడండి</p>
+                    <div class="language-examples">
+                        <span>"విక్రయాలు రికార్డ్ చేయండి"</span>
+                        <span>"బ్యాలెన్స్ చెప్పండి"</span>
+                    </div>
+                </div>
+                
+                <div class="language-card bengali">
+                    <span class="flag">🇮🇳</span>
+                    <h3>Bengali</h3>
+                    <p>বাংলায় কথা বলুন</p>
+                    <div class="language-examples">
+                        <span>"বিক্রয় রেকর্ড করুন"</span>
+                        <span>"ব্যালেন্স বলুন"</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="more-languages">
+                <p>Also available in: <strong>Gujarati, Marathi, Kannada, Malayalam, Punjabi</strong></p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <h2>Ready to Transform Your Accounting?</h2>
+            <p>Join thousands of Indian businesses using Voice Accounting System</p>
+            
+            <div class="cta-buttons">
+                <button class="btn-cta primary" onclick="window.VoiceAccounting.startDemo()">
+                    <i class="fas fa-play"></i> Try Live Demo
+                </button>
+                <button class="btn-cta secondary" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-rocket"></i> Get Started Free
+                </button>
+                <button class="btn-cta outline" onclick="window.open('/api-docs', '_blank')">
+                    <i class="fas fa-code"></i> View API Docs
+                </button>
+            </div>
+            
+            <div class="cta-features">
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>No credit card required</span>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Free forever for small businesses</span>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Set up in 2 minutes</span>
+                </div>
+                <div class="cta-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>24/7 support</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Voice Accounting</h3>
+                <p>Making accounting accessible to every Indian business</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/voice">Voice Accounting</a></li>
+                    <li><a href="/gst">GST Compliance</a></li>
+                    <li><a href="/reports">Reports</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="/api-docs">API Reference</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/help">Help Center</a></li>
+                    <li><a href="/community">Community</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@voiceaccounting.in</li>
+                    <li><i class="fas fa-phone"></i> +91-9876543210</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Support</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Voice Accounting System. All rights reserved.</p>
+            <p>Made with ❤️ for Indian businesses</p>
+        </div>
+    </footer>
+
+    <!-- Alerts Container -->
+    <div id="alerts-container" class="alerts-container"></div>
+
+    <!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/app.js"></script>
+    <script src="/voice-commands.js"></script>
+    <script src="/accounting-engine.js"></script>
+    <script src="/gst-calculator.js"></script>
+    <script src="/database.js"></script>
+    
+    <script>
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Voice Accounting System loading...');
+        });
+    </script>
+</body>
+</html>

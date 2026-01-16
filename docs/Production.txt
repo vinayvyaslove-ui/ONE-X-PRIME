@@ -1,0 +1,13 @@
+
+### Response Format
+All responses are in JSON format with the following structure:
+```json
+{
+  "success": true,
+  "message": "Operation successful",
+  "data": {},
+  "meta": {
+    "timestamp": "2024-01-15T10:30:00Z",
+    "request_id": "req_123456789"
+  }
+}

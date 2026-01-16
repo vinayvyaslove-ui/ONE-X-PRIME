@@ -1,0 +1,14 @@
+- Auto-generate IRN via API
+- Add QR code to invoice
+- Update accounting records
+
+2. **IRN Management**
+- Track IRN status
+- Cancel/amend IRNs
+- Bulk IRN generation
+- Export IRN report
+
+## 🔄 Reconciliation
+
+### Auto-Reconciliation
+1. **Setup Auto-Reconcile**

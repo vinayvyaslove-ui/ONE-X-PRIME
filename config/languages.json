@@ -1,0 +1,157 @@
+{
+  "supportedLanguages": [
+    {
+      "code": "hi",
+      "name": "Hindi",
+      "nativeName": "हिन्दी",
+      "accountingTerms": {
+        "debit": "जमा",
+        "credit": "नामे",
+        "balance": "शेष",
+        "profit": "लाभ",
+        "loss": "हानि",
+        "expense": "व्यय",
+        "income": "आय",
+        "tax": "कर",
+        "invoice": "बिल",
+        "receipt": "रसीद"
+      }
+    },
+    {
+      "code": "ta",
+      "name": "Tamil",
+      "nativeName": "தமிழ்",
+      "accountingTerms": {
+        "debit": "டெபிட்",
+        "credit": "கிரெடிட்",
+        "balance": "இருப்பு",
+        "profit": "லாபம்",
+        "loss": "நஷ்டம்",
+        "expense": "செலவு",
+        "income": "வருமானம்",
+        "tax": "வரி",
+        "invoice": "விலைப்பட்டியல்",
+        "receipt": "ரசீது"
+      }
+    },
+    {
+      "code": "te",
+      "name": "Telugu",
+      "nativeName": "తెలుగు",
+      "accountingTerms": {
+        "debit": "డెబిట్",
+        "credit": "క్రెడిట్",
+        "balance": "బ్యాలెన్స్",
+        "profit": "లాభం",
+        "loss": "నష్టం",
+        "expense": "ఖర్చు",
+        "income": "ఆదాయం",
+        "tax": "పన్ను",
+        "invoice": "ఇన్వాయిస్",
+        "receipt": "రసీదు"
+      }
+    },
+    {
+      "code": "bn",
+      "name": "Bengali",
+      "nativeName": "বাংলা",
+      "accountingTerms": {
+        "debit": "ডেবিট",
+        "credit": "ক্রেডিট",
+        "balance": "ব্যালেন্স",
+        "profit": "লাভ",
+        "loss": "ক্ষতি",
+        "expense": "ব্যয়",
+        "income": "আয়",
+        "tax": "কর",
+        "invoice": "চালান",
+        "receipt": "রসিদ"
+      }
+    },
+    {
+      "code": "gu",
+      "name": "Gujarati",
+      "nativeName": "ગુજરાતી",
+      "accountingTerms": {
+        "debit": "ડેબિટ",
+        "credit": "ક્રેડિટ",
+        "balance": "બેલેન્સ",
+        "profit": "નફો",
+        "loss": "નુકસાન",
+        "expense": "ખર્ચ",
+        "income": "આવક",
+        "tax": "કર",
+        "invoice": "ચલણ",
+        "receipt": "રસીદ"
+      }
+    },
+    {
+      "code": "mr",
+      "name": "Marathi",
+      "nativeName": "मराठी",
+      "accountingTerms": {
+        "debit": "डेबिट",
+        "credit": "क्रेडिट",
+        "balance": "बॅलन्स",
+        "profit": "नफा",
+        "loss": "तोटा",
+        "expense": "खर्च",
+        "income": "उत्पन्न",
+        "tax": "कर",
+        "invoice": "बीजक",
+        "receipt": "पावती"
+      }
+    },
+    {
+      "code": "kn",
+      "name": "Kannada",
+      "nativeName": "ಕನ್ನಡ",
+      "accountingTerms": {
+        "debit": "ಡೆಬಿಟ್",
+        "credit": "ಕ್ರೆಡಿಟ್",
+        "balance": "ಬ್ಯಾಲೆನ್ಸ್",
+        "profit": "ಲಾಭ",
+        "loss": "ನಷ್ಟ",
+        "expense": "ಖರ್ಚು",
+        "income": "ಆದಾಯ",
+        "tax": "ತೆರಿಗೆ",
+        "invoice": "ಸರಕು ಪಟ್ಟಿ",
+        "receipt": "ರಸೀದಿ"
+      }
+    },
+    {
+      "code": "ml",
+      "name": "Malayalam",
+      "nativeName": "മലയാളം",
+      "accountingTerms": {
+        "debit": "ഡെബിറ്റ്",
+        "credit": "ക്രെഡിറ്റ്",
+        "balance": "ബാലൻസ്",
+        "profit": "ലാഭം",
+        "loss": "നഷ്ടം",
+        "expense": "ചെലവ്",
+        "income": "വരുമാനം",
+        "tax": "നികുതി",
+        "invoice": "ഇൻവോയ്സ്",
+        "receipt": "രസീത്"
+      }
+    },
+    {
+      "code": "pa",
+      "name": "Punjabi",
+      "nativeName": "ਪੰਜਾਬੀ",
+      "accountingTerms": {
+        "debit": "ਡੈਬਿਟ",
+        "credit": "ਕ੍ਰੈਡਿਟ",
+        "balance": "ਬੈਲੈਂਸ",
+        "profit": "ਲਾਭ",
+        "loss": "ਨੁਕਸਾਨ",
+        "expense": "ਖਰਚ",
+        "income": "ਆਮਦਨ",
+        "tax": "ਟੈਕਸ",
+        "invoice": "ਚਲਾਨ",
+        "receipt": "ਰਸੀਦ"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+- Upload custom HTML/CSS
+- Configure fields
+- Set as default
+
+### E-Invoicing (IRN/QR Code)
+1. **Generate IRN**

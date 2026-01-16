@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "data": {
+    "extracted_data": {
+      "supplier_name": "ABC Suppliers",
+      "supplier_gstin": "27XYZPU9603R1ZY",
+      "invoice_number": "INV-001",
+      "invoice_date": "2024-04-15",
+      "total_amount": 11800,
+      "tax_amount": 1800,
+      "items": [
+        {
+          "description": "Office Supplies",
+          "quantity": 10,
+          "unit_price": 1000,
+          "total": 10000
+        }
+      ]
+    },
+    "confidence": 0.95,
+    "validation_errors": []
+  }
+}

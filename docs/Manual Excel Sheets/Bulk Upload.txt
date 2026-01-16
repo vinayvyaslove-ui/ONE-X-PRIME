@@ -1,0 +1,2 @@
+Dashboard → Bulk Upload → Invoices
+Select file → Validate → Import

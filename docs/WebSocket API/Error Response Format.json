@@ -1,0 +1,13 @@
+{
+  "success": false,
+  "error": {
+    "code": "ERR_API_001",
+    "message": "Invalid API key",
+    "details": "The provided API key is invalid or expired",
+    "documentation_url": "https://docs.gst-ai.com/errors/ERR_API_001"
+  },
+  "meta": {
+    "timestamp": "2024-04-15T10:30:00Z",
+    "request_id": "req_123456789"
+  }
+}

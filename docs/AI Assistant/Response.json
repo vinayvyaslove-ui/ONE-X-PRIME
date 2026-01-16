@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "data": {
+    "response": "Based on your April 2024 transactions, your estimated tax liability is ₹15,000. This includes CGST: ₹6,750, SGST: ₹6,750, and IGST: ₹1,500.",
+    "sources": ["transaction_data_april"],
+    "confidence": 0.92,
+    "suggested_actions": [
+      {
+        "action": "file_gstr",
+        "parameters": {
+          "type": "GSTR3B",
+          "period": "04-2024"
+        }
+      }
+    ]
+  }
+}

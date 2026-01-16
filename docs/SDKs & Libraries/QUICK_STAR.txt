@@ -1,0 +1,16 @@
+
+## **docs/QUICK_START.md**
+
+```markdown
+# GST AI Assistant - Quick Start Guide
+
+## 🚀 Get Started in 5 Minutes
+
+### Step 1: Create Your Account
+1. **Sign Up**: Visit [app.gst-ai.com/signup](https://app.gst-ai.com/signup)
+2. **Enter Details**:
+   ```yaml
+   Email: your@business.com
+   Password: ********
+   Business Name: Your Business Name
+   Phone: +919876543210

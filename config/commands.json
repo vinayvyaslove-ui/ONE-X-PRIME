@@ -1,0 +1,288 @@
+{
+  "ai_commands": {
+    "gst_operations": {
+      "file_gstr": {
+        "command": "file_gstr",
+        "description": "File GST returns for specified period",
+        "parameters": {
+          "gstin": "string",
+          "period": "string (MM-YYYY)",
+          "return_type": "GSTR1/GSTR3B/GSTR9",
+          "auto_calculate": "boolean"
+        },
+        "ai_prompt": "Analyze transaction data and prepare GST return filing for period {period}",
+        "requires_approval": false,
+        "timeout": 300
+      },
+
+      "generate_invoice": {
+        "command": "generate_invoice",
+        "description": "Create GST compliant invoice",
+        "parameters": {
+          "customer_details": "object",
+          "items": "array",
+          "tax_rates": "object",
+          "template": "string"
+        },
+        "ai_prompt": "Generate professional GST invoice with all mandatory fields including HSN codes and tax breakdown",
+        "auto_send": true
+      },
+
+      "reconcile_transactions": {
+        "command": "reconcile_gst",
+        "description": "Reconcile purchase and sales with GST portal",
+        "parameters": {
+          "period": "string",
+          "type": "2A/2B",
+          "threshold": "number"
+        },
+        "ai_prompt": "Match invoices with GST portal data and identify discrepancies",
+        "generate_report": true
+      }
+    },
+
+    "ai_assistance": {
+      "ask_gst_query": {
+        "command": "ask_gst",
+        "description": "Answer GST-related queries",
+        "parameters": {
+          "question": "string",
+          "context": "object"
+        },
+        "ai_model": "gpt-4",
+        "temperature": 0.3,
+        "max_tokens": 1000
+      },
+
+      "predict_tax_liability": {
+        "command": "predict_tax",
+        "description": "Predict future tax liability based on trends",
+        "parameters": {
+          "periods": "number",
+          "confidence_level": "number"
+        },
+        "ai_model": "custom_forecast",
+        "uses_historical_data": true
+      },
+
+      "document_analysis": {
+        "command": "analyze_document",
+        "description": "Extract data from GST documents",
+        "parameters": {
+          "document_type": "invoice/bill/receipt",
+          "file_url": "string",
+          "extract_fields": "array"
+        },
+        "ai_model": "vision",
+        "ocr_enabled": true
+      }
+    },
+
+    "automation_workflows": {
+      "monthly_compliance": {
+        "name": "Monthly GST Compliance",
+        "schedule": "0 0 5 * *",
+        "steps": [
+          {
+            "action": "collect_transactions",
+            "source": ["bank", "accounting_software", "pos"]
+          },
+          {
+            "action": "reconcile_gst",
+            "parameters": {"type": "2A/2B"}
+          },
+          {
+            "action": "prepare_returns",
+            "return_types": ["GSTR1", "GSTR3B"]
+          },
+          {
+            "action": "generate_report",
+            "recipients": ["accountant", "owner"]
+          },
+          {
+            "action": "file_returns",
+            "auto_pay": false
+          }
+        ],
+        "error_handling": "retry_3_times"
+      },
+
+      "invoice_processing": {
+        "name": "Automated Invoice Processing",
+        "trigger": "new_invoice_received",
+        "steps": [
+          {
+            "action": "extract_data",
+            "ai_model": "gpt-4-vision"
+          },
+          {
+            "action": "validate_gstin",
+            "check_portal": true
+          },
+          {
+            "action": "match_with_orders",
+            "fuzzy_match": true
+          },
+          {
+            "action": "enter_in_accounting",
+            "software": "tally/quickbooks"
+          },
+          {
+            "action": "schedule_payment",
+            "based_on_terms": true
+          }
+        ]
+      },
+
+      "vendor_compliance_check": {
+        "name": "Vendor GST Compliance Monitor",
+        "schedule": "0 0 * * 1",
+        "steps": [
+          {
+            "action": "check_vendor_status",
+            "source": "gst_portal"
+          },
+          {
+            "action": "flag_non_compliant",
+            "threshold_days": 30
+          },
+          {
+            "action": "send_alerts",
+            "channels": ["email", "dashboard"]
+          }
+        ]
+      }
+    },
+
+    "chatbot_intents": {
+      "greeting": {
+        "patterns": ["hello", "hi", "hey"],
+        "response": "Hello! I'm your GST AI assistant. How can I help you with GST filing, invoices, or compliance today?",
+        "action": null
+      },
+
+      "gst_filing_status": {
+        "patterns": ["filing status", "return filed", "GSTR status"],
+        "parameters": ["period"],
+        "response": "Let me check the filing status for period {period}...",
+        "action": "check_filing_status"
+      },
+
+      "invoice_help": {
+        "patterns": ["create invoice", "generate bill", "make invoice"],
+        "parameters": ["customer_name", "amount"],
+        "response": "I'll help you create a GST compliant invoice. Could you provide the customer GSTIN and item details?",
+        "action": "start_invoice_creation"
+      },
+
+      "tax_calculation": {
+        "patterns": ["calculate tax", "how much GST", "tax amount"],
+        "parameters": ["amount", "category"],
+        "response": "Calculating GST for {amount} in {category} category...",
+        "action": "calculate_gst",
+        "ai_processing": true
+      },
+
+      "compliance_query": {
+        "patterns": ["compliance due", "deadline", "last date"],
+        "parameters": ["return_type"],
+        "response": "Checking compliance deadlines for {return_type}...",
+        "action": "get_deadlines"
+      }
+    },
+
+    "scheduled_tasks": {
+      "daily": [
+        {
+          "task": "sync_gst_portal",
+          "time": "02:00",
+          "enabled": true
+        },
+        {
+          "task": "send_daily_summary",
+          "time": "18:00",
+          "recipients": ["admin"]
+        }
+      ],
+      "weekly": [
+        {
+          "task": "compliance_report",
+          "day": "monday",
+          "time": "09:00"
+        },
+        {
+          "task": "vendor_audit",
+          "day": "friday",
+          "time": "10:00"
+        }
+      ],
+      "monthly": [
+        {
+          "task": "auto_filing",
+          "day": "10",
+          "time": "00:00",
+          "before_deadline": 5
+        },
+        {
+          "task": "analytics_report",
+          "day": "1",
+          "time": "09:00"
+        }
+      ]
+    },
+
+    "alert_triggers": {
+      "gst_deadline": {
+        "condition": "days_before_deadline <= 3",
+        "action": "send_alert",
+        "channels": ["email", "sms", "push"],
+        "message": "GST filing deadline in {days} days"
+      },
+
+      "discrepancy_found": {
+        "condition": "reconciliation_mismatch > 1000",
+        "action": "notify_accountant",
+        "priority": "high",
+        "requires_acknowledgment": true
+      },
+
+      "vendor_non_compliant": {
+        "condition": "vendor_status == 'suspended'",
+        "action": "block_payments",
+        "notify_purchasing": true
+      },
+
+      "high_value_transaction": {
+        "condition": "invoice_amount > 50000",
+        "action": "flag_for_review",
+        "auto_verify_gstin": true
+      }
+    }
+  },
+
+  "integrations": {
+    "accounting_software": ["tally", "quickbooks", "zoho_books", "freshbooks"],
+    "payment_gateways": ["razorpay", "stripe", "paytm", "phonepe"],
+    "banking": ["yes_bank", "hdfc", "icici", "axis"],
+    "ecommerce": ["shopify", "woocommerce", "amazon", "flipkart"],
+    "erp": ["sap", "oracle", "microsoft_dynamics"]
+  },
+
+  "templates": {
+    "invoice": {
+      "default": "classic_gst",
+      "available": ["classic_gst", "modern", "minimal", "detailed"],
+      "custom_css_allowed": true
+    },
+    "report": {
+      "formats": ["pdf", "excel", "json"],
+      "charts": ["bar", "line", "pie"],
+      "sections": ["summary", "detailed", "comparative"]
+    },
+    "email": {
+      "welcome": "welcome_gst_ai.html",
+      "invoice": "invoice_generated.html",
+      "alert": "compliance_alert.html"
+    }
+  }
+}

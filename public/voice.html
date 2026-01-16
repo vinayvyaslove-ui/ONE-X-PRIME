@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant - GST Master</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar (Same as dashboard) -->
+    <aside class="sidebar">
+        <!-- Sidebar content from dashboard -->
+    </aside>
+
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="page-title">
+                <h2><i class="fas fa-robot"></i> GST Voice Assistant</h2>
+            </div>
+            <div class="top-bar-actions">
+                <button class="btn btn-primary" onclick="showTutorial()">
+                    <i class="fas fa-graduation-cap"></i> Tutorial
+                </button>
+                <button class="btn btn-outline" onclick="viewHistory()">
+                    <i class="fas fa-history"></i> History
+                </button>
+            </div>
+        </header>
+
+        <!-- Voice Assistant Content -->
+        <div class="voice-content">
+            <!-- Assistant Introduction -->
+            <div class="assistant-intro">
+                <div class="assistant-avatar">
+                    <img src="assets/images/assistant-avatar.png" alt="GST Assistant">
+                </div>
+                <div class="assistant-info">
+                    <h2>Hello, I'm your GST Assistant!</h2>
+                    <p>I can help you with GST filing, tax calculations, invoice management, and more. 
+                       Just speak naturally or type your question.</p>
+                    <div class="assistant-features">
+                        <span class="feature-tag"><i class="fas fa-microphone"></i> Voice Commands</span>
+                        <span class="feature-tag"><i class="fas fa-file-invoice"></i> GST Queries</span>
+                        <span class="feature-tag"><i class="fas fa-chart-bar"></i> Reports</span>
+                        <span class="feature-tag"><i class="fas fa-calendar-alt"></i> Reminders</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Interface -->
+            <div class="voice-interface">
+                <!-- Voice Controls -->
+                <div class="voice-controls">
+                    <div class="voice-status" id="voiceStatus">
+                        <i class="fas fa-microphone"></i>
+                        <span>Click microphone to start speaking</span>
+                    </div>
+                    <div class="voice-buttons">
+                        <button class="voice-btn btn-primary" id="startListening">
+                            <i class="fas fa-microphone"></i>
+                            <span>Start Speaking</span>
+                        </button>
+                        <button class="voice-btn btn-outline" id="stopListening" disabled>
+                            <i class="fas fa-stop"></i>
+                            <span>Stop</span>
+                        </button>
+                        <button class="voice-btn btn-outline" onclick="clearConversation()">
+                            <i class="fas fa-trash"></i>
+                            <span>Clear</span>
+                        </button>
+                    </div>
+                    <div class="voice-language">
+                        <label>Language:</label>
+                        <select id="voiceLanguage">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ta">Tamil</option>
+                            <option value="te">Telugu</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Conversation Area -->
+                <div class="conversation-area">
+                    <div class="conversation-messages" id="conversationMessages">
+                        <!-- Messages will be added here -->
+                        <div class="message assistant">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm your GST assistant. How can I help you today?</p>
+                                <p class="message-time">Just now</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Commands -->
+                    <div class="quick-commands">
+                        <h4>Try asking:</h4>
+                        <div class="command-chips">
+                            <button class="command-chip" onclick="useQuickCommand('file_gstr1')">
+                                File GSTR-1 for this month
+                            </button>
+                            <button class="command-chip" onclick="useQuickCommand('tax_liability')">
+                                What's my tax liability?
+                            </button>
+                            <button class="command-chip" onclick="useQuickCommand('pending_invoices')">
+                                Show pending payments
+                            </button>
+                            <button class="command-chip" onclick="useQuickCommand('itc_balance')">
+                                Check ITC balance
+                            </button>
+                            <button class="command-chip" onclick="useQuickCommand('due_dates')">
+                                When are returns due?
+                            </button>
+                            <button class="command-chip" onclick="useQuickCommand('generate_report')">
+                                Generate sales report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <div class="input-wrapper">
+                        <input type="text" 
+                               id="textInput" 
+                               placeholder="Type your question here..."
+                               onkeypress="handleTextInput(event)">
+                        <button class="btn btn-primary" onclick="sendTextMessage()">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                    <div class="input-suggestions">
+                        <span>Press Enter to send • Ctrl+Space to start voice</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assistant Capabilities -->
+            <div class="capabilities-section">
+                <h3>What I Can Help With</h3>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h4>GST Filing</h4>
+                        <p>File GSTR-1, 3B, 9, e-way bills, and check filing status</p>
+                        <button class="btn btn-sm btn-outline" onclick="askAbout('gst_filing')">
+                            Ask about GST filing
+                        </button>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4>Tax Calculations</h4>
+                        <p>Calculate GST, tax liability, input credit, and penalties</p>
+                        <button class="btn btn-sm btn-outline" onclick="askAbout('tax_calculation')">
+                            Calculate tax
+                        </button>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Reports & Analytics</h4>
+                        <p>Generate sales reports, tax summaries, and business insights</p>
+                        <button class="btn btn-sm btn-outline" onclick="askAbout('reports')">
+                            Get reports
+                        </button>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h4>Compliance</h4>
+                        <p>Check due dates, compliance score, and pending actions</p>
+                        <button class="btn btn-sm btn-outline" onclick="askAbout('compliance')">
+                            Check compliance
+                        </button>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h4>GST Queries</h4>
+                        <p>Ask about GST rules, rates, exemptions, and procedures</p>
+                        <button class="btn btn-sm btn-outline" onclick="askAbout('gst_queries')">
+                            Ask a question
+                        </button>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h4>Task Automation</h4>
+                        <p>Create invoices, send reminders, reconcile data automatically</p>
+                        <button class="btn btn-sm btn-outline" onclick="askAbout('automation')">
+                            Automate tasks
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="recent-activities">
+                <div class="section-header">
+                    <h3>Recent Assistant Activities</h3>
+                    <button class="btn btn-sm btn-outline" onclick="viewAllActivities()">
+                        View All
+                    </button>
+                </div>
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Filed GSTR-3B</h4>
+                            <p>"File my GSTR-3B for December" • 2 hours ago</p>
+                            <span class="activity-status success">Completed</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Tax Liability Calculated</h4>
+                            <p>"Calculate tax for January sales" • Yesterday</p>
+                            <span class="activity-status success">₹4,50,230 calculated</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Sales Report Generated</h4>
+                            <p>"Show me Q4 sales report" • 2 days ago</p>
+                            <a href="#" class="activity-link">Download Report</a>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-question"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>GST Query Answered</h4>
+                            <p>"What is the GST rate for software services?" • 3 days ago</p>
+                            <span class="activity-status">18% with conditions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Settings -->
+            <div class="voice-settings">
+                <h3>Voice Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="wakeWord" checked>
+                            Enable wake word "Hey GST"
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="autoRead" checked>
+                            Read responses aloud
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="saveHistory" checked>
+                            Save conversation history
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Voice Speed:</label>
+                        <input type="range" id="voiceSpeed" min="0.5" max="2" step="0.1" value="1">
+                        <span id="speedValue">Normal</span>
+                    </div>
+                    <div class="setting-item">
+                        <label>Voice Type:</label>
+                        <select id="voiceType">
+                            <option value="male">Male Voice</option>
+                            <option value="female">Female Voice</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveVoiceSettings()">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Tutorial Modal -->
+        <div id="tutorialModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Voice Assistant Tutorial</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="tutorial-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Start Speaking</h4>
+                                <p>Click the microphone button or say "Hey GST" to start</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Ask Naturally</h4>
+                                <p>Speak naturally, like "What's my tax liability for January?"</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Take Action</h4>
+                                <p>You can file returns, generate reports, or ask questions</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Follow Up</h4>
+                                <p>Ask follow-up questions or give additional commands</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tutorial-examples">
+                        <h4>Example Commands:</h4>
+                        <ul>
+                            <li>"File GSTR-1 for last month"</li>
+                            <li>"Show me pending invoices"</li>
+                            <li>"Calculate GST on ₹50,000"</li>
+                            <li>"Generate sales report for Q4"</li>
+                            <li>"When is GSTR-3B due?"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="startTutorial()">
+                        <i class="fas fa-play"></i> Start Interactive Tutorial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Voice Recognition Script -->
+    <script src="assets/js/voice.js"></script>
+    <script>
+        // Voice Assistant Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeVoiceAssistant();
+            loadConversationHistory();
+        });
+
+        function showTutorial() {
+            document.getElementById('tutorialModal').style.display = 'block';
+        }
+
+        function useQuickCommand(command) {
+            // Handle quick command
+            switch(command) {
+                case 'file_gstr1':
+                    speakToAssistant("File GSTR-1 for this month");
+                    break;
+                case 'tax_liability':
+                    speakToAssistant("What's my tax liability?");
+                    break;
+                // ... other commands
+            }
+        }
+
+        function askAbout(topic) {
+            // Handle topic-based queries
+            const questions = {
+                'gst_filing': "How do I file GSTR-1?",
+                'tax_calculation': "Calculate GST on ₹1,00,000",
+                'reports': "Generate a sales report",
+                'compliance': "What's my compliance score?",
+                'gst_queries': "What are the GST rates for services?",
+                'automation': "Create an invoice for ₹50,000"
+            };
+            
+            if (questions[topic]) {
+                speakToAssistant(questions[topic]);
+            }
+        }
+    </script>
+</body>
+</html>

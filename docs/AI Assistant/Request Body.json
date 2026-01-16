@@ -1,0 +1,10 @@
+{
+  "message": "What's my tax liability for April 2024?",
+  "context": {
+    "gstin": "27AABCU9603R1ZX",
+    "period": "04-2024"
+  },
+  "model": "gpt-4",
+  "temperature": 0.7,
+  "stream": false
+}

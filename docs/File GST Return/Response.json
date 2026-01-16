@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "data": {
+    "filing_id": "filing_123",
+    "arn": "ARN123456789012",
+    "status": "pending",
+    "estimated_time": 30,
+    "payment_required": true,
+    "amount": 15000.50
+  }
+}

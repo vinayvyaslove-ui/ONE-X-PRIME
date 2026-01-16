@@ -1,0 +1,1 @@
+Dashboard → Quick Actions → "Create Invoice"

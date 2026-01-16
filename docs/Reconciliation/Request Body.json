@@ -1,0 +1,7 @@
+{
+  "period": "04-2024",
+  "type": "2A",
+  "auto_match": true,
+  "threshold": 1000,
+  "notify_completion": true
+}

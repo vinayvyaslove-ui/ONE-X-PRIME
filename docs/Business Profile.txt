@@ -1,0 +1,7 @@
+- Business name & address
+- GSTIN details
+- Bank account information
+- Logo and branding
+
+### GST Portal Integration
+1. **Sandbox Mode** (Testing)

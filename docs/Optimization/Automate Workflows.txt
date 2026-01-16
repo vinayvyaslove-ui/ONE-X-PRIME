@@ -1,0 +1,3 @@
+Setup: Recurring invoices
+Enable: Auto-reconciliation
+Schedule: Monthly reports

@@ -1,0 +1,139 @@
+{
+  "app_info": {
+    "name": "GST AI Assistant",
+    "version": "1.0.0",
+    "environment": "production",
+    "base_url": "https://gst-ai-app.com"
+  },
+
+  "admin_accounts": [
+    {
+      "id": "admin_001",
+      "username": "superadmin",
+      "email": "admin@gst-ai-app.com",
+      "role": "super_admin",
+      "permissions": ["all"],
+      "api_access": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+
+  "api_services": {
+    "ai_providers": {
+      "openai": {
+        "api_key": "${OPENAI_API_KEY}",
+        "model": "gpt-4-turbo",
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "anthropic": {
+        "api_key": "${ANTHROPIC_API_KEY}",
+        "model": "claude-3-opus-20240229",
+        "fallback": true
+      },
+      "gemini": {
+        "api_key": "${GEMINI_API_KEY}",
+        "model": "gemini-pro",
+        "fallback": true
+      }
+    },
+
+    "gst_portal": {
+      "sandbox": {
+        "base_url": "https://gst-sandbox.gov.in",
+        "client_id": "${GST_SANDBOX_CLIENT_ID}",
+        "client_secret": "${GST_SANDBOX_SECRET}",
+        "redirect_uri": "https://app.gst-ai-app.com/callback"
+      },
+      "production": {
+        "base_url": "https://gst.gov.in",
+        "client_id": "${GST_PROD_CLIENT_ID}",
+        "client_secret": "${GST_PROD_SECRET}",
+        "redirect_uri": "https://app.gst-ai-app.com/callback"
+      }
+    },
+
+    "database": {
+      "primary": {
+        "type": "mongodb",
+        "uri": "${MONGODB_URI}",
+        "database": "gst_ai_main"
+      },
+      "cache": {
+        "type": "redis",
+        "uri": "${REDIS_URI}",
+        "ttl": 3600
+      }
+    },
+
+    "email_service": {
+      "provider": "sendgrid",
+      "api_key": "${SENDGRID_API_KEY}",
+      "templates": {
+        "welcome": "d-welcome-gst-ai",
+        "invoice": "d-invoice-generated",
+        "alert": "d-gst-alert"
+      }
+    },
+
+    "sms_service": {
+      "provider": "twilio",
+      "account_sid": "${TWILIO_SID}",
+      "auth_token": "${TWILIO_TOKEN}",
+      "from_number": "+1234567890"
+    },
+
+    "storage": {
+      "provider": "aws_s3",
+      "bucket": "gst-ai-documents",
+      "region": "ap-south-1",
+      "access_key": "${AWS_ACCESS_KEY}",
+      "secret_key": "${AWS_SECRET_KEY}"
+    }
+  },
+
+  "automation_settings": {
+    "auto_filing": {
+      "enabled": true,
+      "schedule": "0 0 10 * *",
+      "notify_on_complete": true,
+      "retry_attempts": 3
+    },
+    "reconciliation": {
+      "enabled": true,
+      "frequency": "daily",
+      "threshold_amount": 1000,
+      "auto_correct": false
+    },
+    "compliance_checks": {
+      "enabled": true,
+      "schedule": "0 0 9 * *",
+      "notify_via": ["email", "sms"]
+    }
+  },
+
+  "security": {
+    "jwt_secret": "${JWT_SECRET}",
+    "encryption_key": "${ENCRYPTION_KEY}",
+    "session_timeout": 3600,
+    "two_factor_enabled": true,
+    "ip_whitelist": [],
+    "rate_limiting": {
+      "requests_per_minute": 60,
+      "burst_limit": 100
+    }
+  },
+
+  "modules_enabled": {
+    "gst_filing": true,
+    "invoice_generation": true,
+    "reconciliation": true,
+    "analytics": true,
+    "ai_chatbot": true,
+    "document_scan": true,
+    "predictive_tax": true,
+    "compliance_alerts": true,
+    "vendor_management": true,
+    "expense_tracking": true
+  }
+}

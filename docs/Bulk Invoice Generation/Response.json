@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "batch_id": "batch_123",
+    "total_invoices": 50,
+    "processed": 50,
+    "failed": 0,
+    "download_url": "https://api.gst-ai.com/batches/batch_123.zip"
+  }
+}
